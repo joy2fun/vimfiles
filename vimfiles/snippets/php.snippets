@@ -1,0 +1,121 @@
+snippet phpif
+	<?php if( ${1:false} ): ?>
+	${2}
+	<?php endif; ?>
+snippet phpife
+	<?php if( ${1:false} ): ?>
+	${2}
+	<?php else: ?>
+	${3}
+	<?php endif; ?>
+snippet phpeach
+	<?php foreach( ${1} as ${2:$v} ): ?>
+	${3}
+	<?php endforeach; ?>
+snippet phpf
+	<?php
+	${1}
+snippet phpv
+	<?=$${1}?>${2}
+snippet phpe
+	<?php echo ${1}; ?>${2}									
+snippet php
+	<?php
+	${1}
+	?>
+snippet ec
+	echo "${1:string}"${2};
+snippet inc
+	include '${1:file}';${2}
+snippet req
+	require '${1:file}';${2}
+# class ...
+snippet class
+	/**
+	 * ${1}
+	 **/
+	class ${2:ClassName}
+	{
+		${3}
+		function ${4:__construct}(${5:argument})
+		{
+			${6:// code...}
+		}
+	}
+# define(...)
+snippet def
+	define('${1}'${2});${3}
+# defined(...)
+snippet def?
+	${1}defined('${2}')${3}
+snippet wh
+	while (${1:/* condition */}) {
+		${2:// code...}
+	}
+# do ... while
+snippet do
+	do {
+		${2:// code... }
+	} while (${1:/* condition */});
+snippet if
+	if (${1:/* condition */}) {
+		${2:// code...}
+	}
+snippet ife
+	if (${1:/* condition */}) {
+	    ${2:// code...}
+	} else {
+	    ${3:// code...}
+	}
+	${4}
+snippet else
+	else {
+		${1:// code...}
+	}
+snippet elseif
+	elseif (${1:/* condition */}) {
+		${2:// code...}
+	}
+# Tertiary conditional
+snippet t
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
+snippet switch
+	switch ($${1:variable}) {
+		case '${2:value}':
+			${3:// code...}
+			break;
+		${5}
+		default:
+			${4:// code...}
+			break;
+	}
+snippet case
+	case '${1:value}':
+		${2:// code...}
+		break;${3}
+snippet for
+	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+		${4: // code...}
+	}
+snippet foreach
+	foreach ($${1:variable} as $${2:key}) {
+		${3:// code...}
+	}
+snippet fun
+	function ${1:name}(${2}) {
+		${3:// code...}
+	}
+snippet array
+	$${1:arrayName} = array('${2}' => ${3});${4}
+#
+# php unit 
+#
+snippet pu
+	class ${1}Test extends PHPUnit_Framework_TestCase
+	{
+		public function ${2}()
+		{
+			${3}
+		}
+	}
+	

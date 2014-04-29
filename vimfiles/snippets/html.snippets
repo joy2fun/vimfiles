@@ -1,0 +1,50 @@
+# Some useful Unicode entits
+# Non-Breaking Space
+snippet nbs
+	&nbsp;
+snippet script
+	<script> 
+		${1}
+	</script>${2}
+snippet jsfile
+	<script src="${1}"></script>${2}
+snippet style
+	<style type="text/css" media="${1:screen}">
+		${2}
+	</style>${3}
+snippet br
+	<br />
+snippet fieldset
+	<fieldset id="$1">
+		<legend>${1:name}</legend>
+
+		${3}
+	</fieldset>
+snippet input
+	<input type="${1:text}" name="${2:name}" value="${3}" id="${4:$2}" class="${5:input}" />${6}
+snippet inputb
+	<input type="button" name="${1:name}" value="${2}" id="${3:$1}" class="${4:button}" />${5}
+snippet inputh
+	<input type="hidden" name="${1:name}" value="${2}" id="${3:$1}" />${4}
+snippet inputp
+	<input type="password" name="${1:name}" value="${2}" id="${3:$1}" />${4}
+snippet inputc
+	<input type="checkbox" name="${1:name}" value="${2}" ${3:checked} />${4}
+snippet inputr
+	<input type="radio" name="${1:name}" value="${2}" ${3:checked} />${4}
+snippet label
+	<label for="${2:$1}">${1:name}</label><input type="${3:text/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}" />${7}
+snippet link
+	<link rel="${1:stylesheet}" href="${2:.css}" type="text/css" media="${3:screen}" />${4}
+snippet meta
+	<meta name="${1:name}" content="${2:content}" />${3}
+snippet opt
+	<option value="${1:option}">${2:$1}</option>${3}
+snippet optt
+	<option>${1:option}</option>${2}
+snippet select
+	<select name="${1:some_name}" id="${2:$1}">
+		<option value="${3:option}">${4:$3}</option>
+	</select>${5}
+snippet textarea
+	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
