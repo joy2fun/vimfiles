@@ -5,8 +5,5 @@
 /**/*.swp
 /vimfiles/doc/tags
 /_vimrc
-/tmp*
-/tmp/**
 /vimfiles/.netrwhist
 /vimfiles/bundle/*
-!/vimfiles/bundle/Vundle.vim

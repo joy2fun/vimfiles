@@ -26,7 +26,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'kien/ctrlp.vim'
 Plugin 'brookhong/DBGPavim'
 
-Plugin 'StanAngeloff/php.vim'
+""Plugin 'StanAngeloff/php.vim'
 
 Plugin 'Lokaltog/vim-easymotion'
 
