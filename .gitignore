@@ -3,7 +3,8 @@
 /**/*~
 /*.swp
 /**/*.swp
-/vimfiles/doc/tags
+/**/tags
 /_vimrc
 /vimfiles/.netrwhist
 /vimfiles/bundle/*
+!/vimfiles/bundle/Vundle.vim
