@@ -18,15 +18,22 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 
-Plugin 'ervandew/supertab'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'ervandew/supertab'
+
+"garbas snipmate
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+
+Plugin 'msanders/snipmate.vim'
+let g:snippets_dir = '$VIM/vimfiles/snippets/'
 
 Plugin 'kien/ctrlp.vim'
-Plugin 'brookhong/DBGPavim'
+"Plugin 'brookhong/DBGPavim'
 
-""Plugin 'StanAngeloff/php.vim'
+"Plugin 'Shougo/neocomplcache'
+"Plugin 'brookhong/neco-php'
+"source $VIM/neoco.vim 
 
 Plugin 'Lokaltog/vim-easymotion'
 
@@ -35,8 +42,7 @@ Plugin 'file:///'.$VIM.'/vimfiles/bundle/bufexplorer-7.4.2'
 
 call vundle#end()
 
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let g:dbgPavimPort = 9009
 let g:dbgPavimBreakAtEntry = 0

@@ -31,9 +31,13 @@ set hlsearch
 set autoread
 
 let mapleader = ","
-let g:SuperTabMappingForward = '<M-/>'
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabMappingTabLiteral = '<c-s-tab>'
+
+"supertab mapping
+"let g:SuperTabCrMapping = 0
+"let g:SuperTabMappingForward = '<c-j>'
+"let g:SuperTabMappingBackward = '<c-k>'
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
 
 let Tlist_Show_One_File = 1
 
@@ -41,36 +45,53 @@ let g:user_emmet_expandabbr_key = '<C-E>'
 
 let NERDTreeMinimalUI=1
 let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=2
+let NERDTreeChDirMode=0
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|settings\|project\|buildpath\)$']
-au GUIEnter * simalt ~x 
+let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
 
-au BufEnter *.htm,*.html,*.tpl,*.phtml,*.snippets setlocal noexpandtab
+"au GUIEnter * simalt ~x 
+
+au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml 
     \ set ft=html.php.smarty | 
-    \ setlocal ts=2 |
+    \ setlocal ts=2 | 
+    \ setlocal sts=2 | 
+    \ setlocal sw=2 |
     \ set syntax=php
 
 "my enter setting
-imap <S-Enter> <C-O>$<cr>
+inoremap <S-Enter> <C-O>$<cr>
 
 "switch single line.
-imap <M-Up> <Esc>ddkP$a
-imap <M-Down> <Esc>ddp$a
+inoremap <M-Up> <Esc>ddkP$a
+inoremap <M-Down> <Esc>ddp$a
 
 "duplicate one line.
-imap <C-M-Up> <Esc>yyP$a
-imap <C-M-Down> <Esc>yyp$a
+inoremap <C-M-Up> <Esc>yyP$a
+inoremap <C-M-Down> <Esc>yyp$a
 
-imap <C-L> <C-O>$
+inoremap <C-L> <C-O>$
 
-nmap <silent> <F3> :NERDTreeToggle<cr>
-nmap <silent> <F8> :TlistToggle<cr>
+nmap <silent> <Leader>n :NERDTreeToggle<cr>
+nmap <silent> <Leader>t :TlistToggle<cr>
+
+"ctrlp mappings
+nmap <Leader>bb :CtrlPBuffer<cr>
+nmap <Leader>bm :CtrlPMRUFiles<cr>
+
+"fugitive mappings
+nmap <Leader>ff :Git<Space>
+nmap <Leader>fs :Gstatus<cr>
+nmap <Leader>fc :Gcommit<cr>
+nmap <Leader>fd :Git diff %<cr>
+nmap <Leader>fl :Git log -5<cr>
 
 "phpdoc mapping
 nmap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
 nmap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+
+"save current file and then run php lint
+nmap <Leader>pl :update<cr>:!php -l %<cr>
 
 " Return to last edit position when opening files 
 ""autocmd BufReadPost *

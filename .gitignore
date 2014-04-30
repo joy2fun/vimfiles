@@ -8,3 +8,5 @@
 /vimfiles/.netrwhist
 /vimfiles/bundle/*
 !/vimfiles/bundle/Vundle.vim
+!/vimfiles/bundle/bufexplorer-7.4.2
+!/vimfiles/bundle/php_doc
