@@ -31,15 +31,11 @@ snippet req
 	require '${1:file}';${2}
 # class ...
 snippet class
-	/**
-	 * ${1}
-	 **/
-	class ${2:ClassName}
+	class ${1:`substitute(Filename(), '\..*', '', '')`}
 	{
-		${3}
-		function ${4:__construct}(${5:argument})
+		function ${2:__construct}(${3:argument})
 		{
-			${6:// code...}
+			${4:// code...}
 		}
 	}
 # define(...)
@@ -113,7 +109,7 @@ snippet array
 snippet pu
 	class ${1}Test extends PHPUnit_Framework_TestCase
 	{
-		public function ${2}()
+		public function test${2}()
 		{
 			${3}
 		}
