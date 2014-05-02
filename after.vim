@@ -82,7 +82,9 @@ nmap <Leader>bm :CtrlPMRUFiles<cr>
 "fugitive mappings
 nmap <Leader>ff :Git<Space>
 nmap <Leader>fs :Gstatus<cr>
-nmap <Leader>fc :Gcommit<cr>
+nmap <Leader>fa :Git add %<cr>
+nmap <Leader>fc :Gcommit -a -m ""<Left>
+nmap <Leader>fw :Gwrite<cr>
 nmap <Leader>fd :Git diff %<cr>
 nmap <Leader>fl :Git log -5<cr>
 
