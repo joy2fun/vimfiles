@@ -32,6 +32,12 @@ set autoread
 
 let mapleader = ","
 
+if has("win32")
+    let g:launchWebBrowser=":silent ! start "
+elseif has("unix")
+
+endif
+
 "supertab mapping
 "let g:SuperTabCrMapping = 0
 "let g:SuperTabMappingForward = '<c-j>'
@@ -99,6 +105,11 @@ nmap <Leader>pp :!php<Space>%<cr>
 nmap <Leader>pu :!php<Space>phpunit.phar<C-Left>
 "save current file and then run php lint
 nmap <Leader>pl :update<cr>:!php -l %<cr>
+
+"launch browser mappings
+nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
+nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
+nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
 
 " Return to last edit position when opening files 
 ""autocmd BufReadPost *
