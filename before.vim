@@ -35,6 +35,8 @@ Plugin 'kien/ctrlp.vim'
 "Plugin 'brookhong/neco-php'
 "source $VIM/neoco.vim 
 
+Plugin 'shawncplus/phpcomplete.vim'
+
 Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'file:///'.$VIM.'/vimfiles/bundle/php_doc' 
