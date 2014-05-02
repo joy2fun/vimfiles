@@ -90,6 +90,9 @@ nmap <Leader>fl :Git log -5<cr>
 nmap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
 nmap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
 
+"php command mapping
+nmap <Leader>pp :!php<Space>%<cr>
+nmap <Leader>pu :!php<Space>phpunit.phar<C-Left>
 "save current file and then run php lint
 nmap <Leader>pl :update<cr>:!php -l %<cr>
 
