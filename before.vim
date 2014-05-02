@@ -29,7 +29,7 @@ Plugin 'msanders/snipmate.vim'
 let g:snippets_dir = '$VIM/vimfiles/snippets/'
 
 Plugin 'kien/ctrlp.vim'
-"Plugin 'brookhong/DBGPavim'
+Plugin 'brookhong/DBGPavim'
 
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'brookhong/neco-php'

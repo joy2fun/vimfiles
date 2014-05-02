@@ -72,6 +72,8 @@ inoremap <C-M-Down> <Esc>yyp$a
 
 inoremap <C-L> <C-O>$
 
+imap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+
 nmap <silent> <Leader>n :NERDTreeToggle<cr>
 nmap <silent> <Leader>t :TlistToggle<cr>
 
