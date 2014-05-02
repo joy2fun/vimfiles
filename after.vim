@@ -21,41 +21,36 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+set viminfo^=% " Remember info about open buffers on close
+set hlsearch
+set autoread " Set to auto read when a file is changed from the outside
+set nobackup
+
+set guifont=Courier_New:h10
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+syntax on
 
-set hlsearch
-
-" Set to auto read when a file is changed from the outside
-set autoread
+"Return to last edit position when opening files 
+"autocmd BufReadPost *
+"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal! g`\"" |
+"     \ endif
 
 let mapleader = ","
 
+if has("gui")
+    au GUIEnter * simalt ~x "maximise window
+endif
+
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
+    let g:phpUnitPhar="D:/wamp/phpunit.phar"
 elseif has("unix")
 
 endif
-
-"supertab mapping
-"let g:SuperTabCrMapping = 0
-"let g:SuperTabMappingForward = '<c-j>'
-"let g:SuperTabMappingBackward = '<c-k>'
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
-
-let Tlist_Show_One_File = 1
-
-let g:user_emmet_expandabbr_key = '<C-E>'
-
-let NERDTreeMinimalUI=1
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=0
-let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
-
-"au GUIEnter * simalt ~x 
 
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml 
@@ -65,23 +60,39 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ setlocal sw=2 |
     \ set syntax=php
 
-"my enter setting
-inoremap <S-Enter> <C-O>$<cr>
+"supertab settings
+"let g:SuperTabCrMapping = 0
+"let g:SuperTabMappingForward = '<c-j>'
+"let g:SuperTabMappingBackward = '<c-k>'
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
 
-"switch single line.
+"emmet settings
+let g:user_emmet_expandabbr_key = '<C-E>'
+
+"nerdtree settings
+let NERDTreeMinimalUI=1
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=0
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
+nmap <silent> <Leader>n :NERDTreeToggle<cr>
+
+"taglist settings
+let Tlist_Show_One_File = 1
+nmap <silent> <Leader>t :TlistToggle<cr>
+
+inoremap <S-Enter> <C-O>$<cr>
+inoremap <C-L> <C-O>$
+imap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+
+"switch single line. breaks on first/last line 
 inoremap <M-Up> <Esc>ddkP$a
 inoremap <M-Down> <Esc>ddp$a
 
 "duplicate one line.
 inoremap <C-M-Up> <Esc>yyP$a
 inoremap <C-M-Down> <Esc>yyp$a
-
-inoremap <C-L> <C-O>$
-
-imap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
-
-nmap <silent> <Leader>n :NERDTreeToggle<cr>
-nmap <silent> <Leader>t :TlistToggle<cr>
 
 "ctrlp mappings
 nmap <Leader>bb :CtrlPBuffer<cr>
@@ -96,30 +107,19 @@ nmap <Leader>fw :Gwrite<cr>
 nmap <Leader>fd :Git diff %<cr>
 nmap <Leader>fl :Git log -5<cr>
 
-"phpdoc mapping
+"phpdoc mappings
 nmap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
 nmap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
 
-"php command mapping
+"php command mappings
 nmap <Leader>pp :!php<Space>%<cr>
-nmap <Leader>pu :!php<Space>phpunit.phar<C-Left>
+nmap <Leader>pu :exe "!php ".g:phpUnitPhar
 "save current file and then run php lint
 nmap <Leader>pl :update<cr>:!php -l %<cr>
+"lookup in php manual 
+nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 
 "launch browser mappings
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
-
-" Return to last edit position when opening files 
-""autocmd BufReadPost *
-""     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-""     \   exe "normal! g`\"" |
-""     \ endif
-" Remember info about open buffers on close
-set viminfo^=%
-
-set guifont=Courier_New:h10
-set nobackup
-
-syntax on
