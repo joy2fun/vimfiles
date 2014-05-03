@@ -115,6 +115,7 @@ nmap <Leader>fc :Gcommit -a -m ""<Left>
 nmap <Leader>fw :Gwrite<cr>
 nmap <Leader>fd :Git diff %<cr>
 nmap <Leader>fl :Git log -5<cr>
+nmap <Leader>fp :Git push  msater<C-Left><Left>
 
 "php mappings
 autocmd FileType php 
