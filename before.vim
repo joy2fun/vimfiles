@@ -15,6 +15,7 @@ call vundle#rc(path)
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 
@@ -30,6 +31,7 @@ let g:snippets_dir = '$VIM/vimfiles/snippets/'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'brookhong/DBGPavim'
+Plugin 'brookhong/k.vim'
 
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'brookhong/neco-php'
