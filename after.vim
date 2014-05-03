@@ -48,9 +48,18 @@ endif
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
+    let g:kdbDir = $VIM.'/kdb'
 elseif has("unix")
 
 endif
+
+let g:globalDBkeys = {
+      \ 'oxford' : '<Leader>ll',
+      \ 'oxford7' : '<Leader>lk',
+      \ }
+let g:localDBkeys = {
+      \ 'php' : ['K', '<C-K>'],
+      \ }
 
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml 
@@ -107,15 +116,13 @@ nmap <Leader>fw :Gwrite<cr>
 nmap <Leader>fd :Git diff %<cr>
 nmap <Leader>fl :Git log -5<cr>
 
-"phpdoc mappings
-nmap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
-nmap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+"php mappings
+autocmd FileType php 
+    \ nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR> |
+    \ nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR> |
+    \ nnoremap <buffer> <leader>l :call k#RunMe('php -l', 'botri 10', '')<CR> |
+    \ nnoremap <Leader>u :exe "call k#RunMe('php ".g:phpUnitPhar."', 'botri 10', '')"
 
-"php command mappings
-nmap <Leader>pp :!php<Space>%<cr>
-nmap <Leader>pu :exe "!php ".g:phpUnitPhar
-"save current file and then run php lint
-nmap <Leader>pl :update<cr>:!php -l %<cr>
 "lookup in php manual 
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 
