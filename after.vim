@@ -109,20 +109,29 @@ nmap <Leader>bm :CtrlPMRUFiles<cr>
 
 "fugitive mappings
 nmap <Leader>ff :Git<Space>
+nmap <Leader>fg :GitCMD<Space>
 nmap <Leader>fs :Gstatus<cr>
 nmap <Leader>fa :Git add %<cr>
 nmap <Leader>fc :Gcommit -a -m ""<Left>
 nmap <Leader>fw :Gwrite<cr>
 nmap <Leader>fd :Git diff %<cr>
-nmap <Leader>fl :Git log -5<cr>
+nmap <Leader>fl :GitCMD log -4<cr>
 nmap <Leader>fp :Git push  master<C-Left><Left>
+command -nargs=* GitCMD : 
+    \ if exists("b:git_dir") |
+    \ cd`=b:git_dir[0:-6]` |
+    \   exe "call k#ReadExCmdIntoConsole('botri ','git','!git <args>')" | 
+    \ endif
 
 "php mappings
 autocmd FileType php 
     \ nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR> |
     \ nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR> |
-    \ nnoremap <buffer> <leader>l :call k#RunMe('php -l', 'botri 10', '')<CR> |
-    \ nnoremap <Leader>u :exe "call k#RunMe('php ".g:phpUnitPhar."', 'botri 10', '')"
+    \ nnoremap <Leader>u :Phpunit %<CR> |
+    \ nnoremap <buffer> <leader>l :call k#RunMe('php -l', 'botri 10', '')<CR>
+
+nnoremap <Leader>pu :Phpunit<Space>
+command -nargs=* Phpunit :exe "!php ".g:phpUnitPhar." <args>"
 
 "lookup in php manual 
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
