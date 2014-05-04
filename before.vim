@@ -45,8 +45,3 @@ Plugin 'file:///'.$VIM.'/vimfiles/bundle/php_doc'
 Plugin 'file:///'.$VIM.'/vimfiles/bundle/bufexplorer-7.4.2' 
 
 call vundle#end()
-
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
-let g:dbgPavimPort = 9009
-let g:dbgPavimBreakAtEntry = 0

@@ -108,6 +108,7 @@ nmap <Leader>bb :CtrlPBuffer<cr>
 nmap <Leader>bm :CtrlPMRUFiles<cr>
 
 "fugitive mappings
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 nmap <Leader>ff :Git<Space>
 nmap <Leader>fg :GitCMD<Space>
 nmap <Leader>fs :Gstatus<cr>
@@ -140,3 +141,6 @@ nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".e
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
+
+let g:dbgPavimPort = 9009
+let g:dbgPavimBreakAtEntry = 0
