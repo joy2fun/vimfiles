@@ -5,5 +5,5 @@ endif
 
 "neocomplcache settings
 if exists("g:loaded_neocomplcache")
-    source $VIM/neoco.vim
+    source $vim_root/neoco.vim
 endif
