@@ -101,6 +101,14 @@ nnoremap <silent> <leader>ve :e $vim_root/vimrc<CR>
 nnoremap <silent> <leader>vs :so $vim_root/vimrc<CR>
 nnoremap <silent> <leader>vr 0y$:<C-r>"<CR>
 nnoremap <silent> <leader>qa :qall!<cr>
+nnoremap <silent> <leader>qx :q!<cr>
+let g:eregex_meta_chars = '^$()[]{}.*+?\/'
+let g:vregex_meta_chars = '^$|[].*\/~'
+vnoremap <silent> * "vy/<C-r>=substitute(escape(@v,g:vregex_meta_chars),"\n",'\\n','g')<CR><CR>N
+vnoremap <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>\>//g<Left><Left>
+vnoremap <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
+nnoremap <silent> <space><space> :nohl<CR>
+vnoremap <silent> <leader>d "_d
 "ctrlp mappings
 nnoremap <silent> <Leader>bb :CtrlPBuffer<cr>
 nnoremap <silent> <Leader>bm :CtrlPMRUFiles<cr>
@@ -128,6 +136,7 @@ com! -nargs=* GitCMD :
     \   exe "call k#ReadExCmdIntoConsole('botri ','git','!git <args>')" |
     \ endif
 
+com! -nargs=1 S let @/='\<'.<f-args>.'\>' | normal n
 com! -nargs=? CC cd %:h
 com! -nargs=0 -bar Dos2Unix :%s/\r//g|set ff=unix
 com! -nargs=0 -bar FmtXML :%s/>\s*</>\r</ge|set ft=xml|normal ggVG=
@@ -190,7 +199,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=0
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
-nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
+nnoremap <Leader>n :NERDTreeToggle<cr>
 
 "supertab settings
 "let g:SuperTabCrMapping = 0
