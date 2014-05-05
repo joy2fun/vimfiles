@@ -112,6 +112,8 @@ vnoremap <silent> <leader>d "_d
 "ctrlp mappings
 nnoremap <silent> <Leader>bb :CtrlPBuffer<cr>
 nnoremap <silent> <Leader>bm :CtrlPMRUFiles<cr>
+nnoremap <silent> <Leader>bf :CtrlPFunky<cr>
+nnoremap <silent> <Leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
 "fugitive mappings
 nnoremap <Leader>ff :Git<Space>
 nnoremap <Leader>fg :GitCMD<Space>
@@ -236,6 +238,7 @@ Plugin 'tpope/vim-surround'
 "Plugin 'ervandew/supertab'
 Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'brookhong/DBGPavim'
 Plugin 'brookhong/k.vim'
 "Plugin 'Shougo/neocomplcache'
