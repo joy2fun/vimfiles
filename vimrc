@@ -77,23 +77,6 @@ elseif has("unix")
 
 endif
 
-"supertab settings {{{
-"let g:SuperTabCrMapping = 0
-"let g:SuperTabMappingForward = '<c-j>'
-"let g:SuperTabMappingBackward = '<c-k>'
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
-" }}}
-
-"nerdtree settings {{{
-let NERDTreeMinimalUI=1
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=0
-let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
-nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
-" }}}
-
 " mappings {{{
 map Q gq
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -110,14 +93,17 @@ inoremap <M-Down> <Esc>ddp$a
 inoremap <C-M-Up> <Esc>yyP$a
 inoremap <C-M-Down> <Esc>yyp$a
 
-nnoremap <Leader>ve :exe tab e g:vimrcfile
+nnoremap <silent> <space>d "_d
+nnoremap <silent> <space>t :tabe<CR>
+nnoremap <silent> <space>q :q<CR>
+nnoremap <silent> <Leader>ve :exe tab e g:vimrcfile
 nnoremap <silent> <leader>ve :e $vim_root/vimrc<CR>
 nnoremap <silent> <leader>vs :so $vim_root/vimrc<CR>
-nnoremap <silent> <space>q :q<CR>
-nnoremap <silent> <space>t :tabe<CR>
+nnoremap <silent> <leader>vr 0y$:<C-r>"<CR>
+nnoremap <silent> <leader>qa :qall!<cr>
 "ctrlp mappings
-nnoremap <Leader>bb :CtrlPBuffer<cr>
-nnoremap <Leader>bm :CtrlPMRUFiles<cr>
+nnoremap <silent> <Leader>bb :CtrlPBuffer<cr>
+nnoremap <silent> <Leader>bm :CtrlPMRUFiles<cr>
 "fugitive mappings
 nnoremap <Leader>ff :Git<Space>
 nnoremap <Leader>fg :GitCMD<Space>
@@ -129,7 +115,6 @@ nnoremap <Leader>fd :Git diff %<cr>
 nnoremap <Leader>fl :GitCMD log -4<cr>
 nnoremap <Leader>fp :Git push  master<C-Left><Left>
 nnoremap <Leader>pu :Phpunit<Space>
-"launch browser mappings
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
@@ -137,17 +122,22 @@ nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
 " }}}
 
 " custom commands {{{
-command! -nargs=* GitCMD :
+com! -nargs=* GitCMD :
     \ if exists("b:git_dir") |
     \ cd`=b:git_dir[0:-6]` |
     \   exe "call k#ReadExCmdIntoConsole('botri ','git','!git <args>')" |
     \ endif
 
-command! -nargs=* Phpunit :exe "!php ".g:phpUnitPhar." <args>"
+com! -nargs=? CC cd %:h
+com! -nargs=0 -bar Dos2Unix :%s/\r//g|set ff=unix
+com! -nargs=0 -bar FmtXML :%s/>\s*</>\r</ge|set ft=xml|normal ggVG=
+com! -nargs=0 -bar FmtJSON :%s/,"/,\r"/ge|%s/{"/{\r"/ge|%s/\(\S\)}/\1\r}/ge|set ft=javascript|normal ggVG=
+com! -nargs=0 -bar RmTrailingBlanks :%s/\s\+$//g
+com! -nargs=* Phpunit :exe "!php ".g:phpUnitPhar." <args>"
 " }}}
 
 " auto commands {{{
-"Return to last edit position when opening files 
+"Return to last edit position when opening files
 au BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
@@ -159,6 +149,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ setlocal ts=2 |
     \ setlocal sts=2 |
     \ setlocal sw=2 |
+    \ setlocal nolist |
     \ set syntax=php
 
 "php mappings
@@ -192,6 +183,21 @@ let g:user_emmet_expandabbr_key = '<C-E>'
 
 "taglist settings
 let Tlist_Show_One_File = 1
+
+"nerdtree settings
+let NERDTreeMinimalUI=1
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=0
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
+nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
+
+"supertab settings
+"let g:SuperTabCrMapping = 0
+"let g:SuperTabMappingForward = '<c-j>'
+"let g:SuperTabMappingBackward = '<c-k>'
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
 
 " ctrlp setup {{{
 let g:ctrlp_clear_cache_on_exit = 0
@@ -242,9 +248,9 @@ hi phpParent            guifg=#008787       gui=none
 hi phpStringSingle      guifg=#dfdf5f       gui=bold
 
 " Javascript Stuff
-hi javaScript           guifg=#FFFFFF ctermfg=15                  gui=none 
-hi javaScriptGlobal     guifg=#FFFFFF ctermfg=15                  gui=none 
-hi javaScriptNumber     guifg=#00c99b ctermfg=42                  gui=none 
+hi javaScript           guifg=#FFFFFF ctermfg=15                  gui=none
+hi javaScriptGlobal     guifg=#FFFFFF ctermfg=15                  gui=none
+hi javaScriptNumber     guifg=#00c99b ctermfg=42                  gui=none
 hi javaScriptIdentifier guifg=#FF9900 ctermfg=208                 gui=none
 hi javaScriptOperator   guifg=#FF9900 ctermfg=208                 gui=none
 hi javaScriptFunction   guifg=#FF9900 ctermfg=208                 gui=none
