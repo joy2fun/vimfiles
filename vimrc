@@ -168,7 +168,7 @@ autocmd FileType php
     \ nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR> |
     \ nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR> |
     \ nnoremap <Leader>u :Phpunit %<CR> |
-    \ nnoremap <buffer> <leader>l :call k#RunMe('php -l', 'botri 10', '')<CR>
+    \ nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
 
 if has("gui")
     au GUIEnter * simalt ~x "maximise window
