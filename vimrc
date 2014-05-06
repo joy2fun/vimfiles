@@ -163,12 +163,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ setlocal nolist |
     \ set syntax=php
 
-"php mappings
-autocmd FileType php
-    \ nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR> |
-    \ nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR> |
-    \ nnoremap <Leader>u :Phpunit %<CR> |
-    \ nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
+autocmd FileType php call PHPFileSettings()
 
 if has("gui")
     au GUIEnter * simalt ~x "maximise window
@@ -251,6 +246,25 @@ Plugin 'file:///'.$VIM.'/vimfiles/bundle/bufexplorer-7.4.2'
 call vundle#end()
 filetype plugin indent on
 syntax on
+" }}}
+
+"Functions {{{
+fun! PHPFileSettings()
+    "php mappings
+    nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
+    nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+    nnoremap <Leader>u :Phpunit %<CR>
+    nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
+    nnoremap <silent> <Tab> :call WrapMoveToCharInLine('$')<CR>
+endfun
+
+fun! WrapMoveToCharInLine(char)
+    let l:current_col = col('.')
+    exe "normal! f".a:char
+    if l:current_col == col('.')
+        exe "normal! 0f".a:char
+    endif
+endfun
 " }}}
 
 " color settings {{{
