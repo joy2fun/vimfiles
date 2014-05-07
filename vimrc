@@ -61,17 +61,15 @@ if has('mouse')
 endif
 
 let mapleader = ","
+let $vim_root = expand("<sfile>:p:h")
 
 " }}}
-
-let $vim_root = expand("<sfile>:p:h")
-set rtp+=$vim_root/bundle/Vundle.vim/
 
 if has("win32")
     let g:launchWebServer=":silent ! start D:\\wamp\\wampmanager.exe"
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
-    let g:kdbDir = 'D:/kdb'
+    let g:kdbDir = "C:/kdb"
     let g:fileBrowser="explorer"
     source $VIMRUNTIME/mswin.vim
     behave mswin
@@ -226,6 +224,7 @@ let g:ctrlp_extensions = ['funky']
 " Plugins {{{
 filetype off
 let g:vundle_lazy_load=1
+set rtp+=$vim_root/bundle/Vundle.vim/
 call vundle#rc($vim_root.'/bundle')
 
 Plugin 'gmarik/Vundle.vim'
