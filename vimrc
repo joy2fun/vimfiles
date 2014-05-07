@@ -67,6 +67,7 @@ let $vim_root = expand("<sfile>:p:h")
 if has("win32")
     set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
     let vundlepath=$VIM.'/vimfiles/bundle'
+    let g:launchWebServer=":silent ! start D:\\wamp\\wampmanager.exe"
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
     let g:kdbDir = $VIM.'/kdb'
@@ -138,6 +139,7 @@ com! -nargs=* GitCMD :
     \   exe "call k#ReadExCmdIntoConsole('botri ','git','!git <args>')" |
     \ endif
 
+com! -nargs=0 W :exe g:launchWebServer
 com! -nargs=1 S let @/='\<'.<f-args>.'\>' | normal n
 com! -nargs=? CC cd %:h
 com! -nargs=0 -bar Dos2Unix :%s/\r//g|set ff=unix
@@ -145,6 +147,7 @@ com! -nargs=0 -bar FmtXML :%s/>\s*</>\r</ge|set ft=xml|normal ggVG=
 com! -nargs=0 -bar FmtJSON :%s/,"/,\r"/ge|%s/{"/{\r"/ge|%s/\(\S\)}/\1\r}/ge|set ft=javascript|normal ggVG=
 com! -nargs=0 -bar RmTrailingBlanks :%s/\s\+$//g
 com! -nargs=* Phpunit :exe "!php ".g:phpUnitPhar." <args>"
+com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION_START=1"
 " }}}
 
 " auto commands {{{
