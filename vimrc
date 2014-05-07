@@ -71,8 +71,8 @@ if has("win32")
     let g:launchWebServer=":silent ! start D:\\wamp\\wampmanager.exe"
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
-    let g:kdbDir = $VIM.'/kdb'
-    let g:snippets_dir = $VIM . '/vimfiles/snippets/'
+    let g:kdbDir = 'D:/kdb'
+    let g:fileBrowser="explorer"
     source $VIMRUNTIME/mswin.vim
     behave mswin
 elseif has("unix")
@@ -127,6 +127,7 @@ nnoremap <Leader>fd :Git diff %<cr>
 nnoremap <Leader>fl :GitCMD log -4<cr>
 nnoremap <Leader>fp :Git push  master<C-Left><Left>
 nnoremap <Leader>pu :Phpunit<Space>
+nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
@@ -188,12 +189,11 @@ let g:localDBkeys = {
       \ 'php' : ['K', '<C-K>'],
       \ }
 
+let g:snippets_dir = $vim_root . '/snippets/'
 "emmet settings
 let g:user_emmet_expandabbr_key = '<C-E>'
-
 "taglist settings
 let Tlist_Show_One_File = 1
-
 "nerdtree settings
 let NERDTreeMinimalUI=1
 let NERDTreeShowBookmarks=1
