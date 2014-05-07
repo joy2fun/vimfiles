@@ -59,14 +59,15 @@ set t_Co=256
 if has('mouse')
   set mouse=a
 endif
-" }}}
 
 let mapleader = ","
+
+" }}}
+
 let $vim_root = expand("<sfile>:p:h")
+set rtp+=$vim_root/bundle/Vundle.vim/
 
 if has("win32")
-    set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
-    let vundlepath=$VIM.'/vimfiles/bundle'
     let g:launchWebServer=":silent ! start D:\\wamp\\wampmanager.exe"
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
@@ -225,7 +226,7 @@ let g:ctrlp_extensions = ['funky']
 " Plugins {{{
 filetype off
 let g:vundle_lazy_load=1
-call vundle#rc(vundlepath)
+call vundle#rc($vim_root.'/bundle')
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
@@ -243,8 +244,8 @@ Plugin 'brookhong/k.vim'
 "Plugin 'brookhong/neco-php'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'file:///'.$VIM.'/vimfiles/bundle/php_doc'
-Plugin 'file:///'.$VIM.'/vimfiles/bundle/bufexplorer-7.4.2'
+Plugin 'file:///'.$vim_root.'/bundle/php_doc'
+Plugin 'file:///'.$vim_root.'/bundle/bufexplorer-7.4.2'
 
 call vundle#end()
 filetype plugin indent on
