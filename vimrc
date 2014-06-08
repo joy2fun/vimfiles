@@ -90,9 +90,6 @@ inoremap <C-L> <C-O>$
 "switch single line. breaks on first/last line
 inoremap <M-Up> <Esc>ddkP$a
 inoremap <M-Down> <Esc>ddp$a
-"duplicate one line.
-inoremap <C-M-Up> <Esc>yyP$a
-inoremap <C-M-Down> <Esc>yyp$a
 
 nnoremap <silent> <space>d "_d
 nnoremap <silent> <space>t :tabe<CR>
