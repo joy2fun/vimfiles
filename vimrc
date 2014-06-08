@@ -68,7 +68,6 @@ let $vim_root = expand("<sfile>:p:h")
 colors molokai
 
 if has("win32")
-    let g:launchWebServer=":silent ! start D:\\wamp\\wampmanager.exe"
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
     let g:kdbDir = "C:/kdb"
@@ -141,7 +140,6 @@ com! -nargs=* GitCMD :
     \   exe "call k#ReadExCmdIntoConsole('botri ','git','!git <args>')" |
     \ endif
 
-com! -nargs=0 W :exe g:launchWebServer
 com! -nargs=1 S let @/='\<'.<f-args>.'\>' | normal n
 com! -nargs=? CC cd %:h
 com! -nargs=? PHPTag !ctags --language-force=php <args>
