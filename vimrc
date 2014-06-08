@@ -118,7 +118,6 @@ nnoremap <Leader>fg :GitCMD<Space>
 nnoremap <Leader>fs :Gstatus<cr>
 nnoremap <Leader>fa :Git add %<cr>
 nnoremap <Leader>fc :Gcommit -a -m ""<Left>
-nnoremap <Leader>fw :Gwrite<cr>
 nnoremap <Leader>fd :Git diff %<cr>
 nnoremap <Leader>fl :GitCMD log -4<cr>
 nnoremap <Leader>fp :Git push<Space>
