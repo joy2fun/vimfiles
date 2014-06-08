@@ -71,7 +71,7 @@ colors molokai
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
     let g:phpUnitPhar="D:/wamp/phpunit.phar"
-    let g:kdbDir = "C:/kdb"
+    let g:kdbDir = "C:/Dropbox/kdb"
     let g:fileBrowser="explorer"
     source $VIMRUNTIME/mswin.vim
     behave mswin
@@ -85,6 +85,7 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
+nnoremap <silent> <Leader>n :NERDTree .<cr>
 inoremap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
@@ -196,7 +197,6 @@ let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=0
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
-nnoremap <Leader>n :NERDTreeToggle<cr>
 
 "supertab settings
 "let g:SuperTabCrMapping = 0
