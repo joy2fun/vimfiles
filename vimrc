@@ -193,7 +193,6 @@ let g:user_emmet_expandabbr_key = '<C-E>'
 let Tlist_Show_One_File = 1
 "nerdtree settings
 let NERDTreeMinimalUI=1
-let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=0
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
