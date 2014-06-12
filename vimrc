@@ -122,7 +122,7 @@ nnoremap <Leader>fa :Git add %<cr>
 nnoremap <Leader>fc :Gcommit -a -m ""<Left>
 nnoremap <Leader>fd :Git diff %<cr>
 nnoremap <Leader>fl :GitCMD log -4<cr>
-nnoremap <Leader>fp :Git push<Space>
+nnoremap <Leader>fp :Git push origin master<Space>
 nnoremap <Leader>pu :Phpunit<Space>
 nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
