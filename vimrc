@@ -70,7 +70,6 @@ colors molokai
 
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
-    let g:phpUnitPhar="D:/wamp/phpunit.phar"
     let g:kdbDir = "C:/Dropbox/kdb"
     let g:fileBrowser="explorer"
     source $VIMRUNTIME/mswin.vim
@@ -86,6 +85,7 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
 nnoremap <silent> <Leader>n :NERDTree .<cr>
+nnoremap <silent> <Space>n :NERDTreeClose<cr>
 inoremap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
@@ -145,7 +145,7 @@ com! -nargs=0 -bar Dos2Unix :%s/\r//g|set ff=unix
 com! -nargs=0 -bar FmtXML :%s/>\s*</>\r</ge|set ft=xml|normal ggVG=
 com! -nargs=0 -bar FmtJSON :%s/,"/,\r"/ge|%s/{"/{\r"/ge|%s/\(\S\)}/\1\r}/ge|set ft=javascript|normal ggVG=
 com! -nargs=0 -bar RmTrailingBlanks :%s/\s\+$//g
-com! -nargs=* Phpunit :exe "!php ".g:phpUnitPhar." <args>"
+com! -nargs=* Phpunit :exe "!phpunit <args>"
 com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION_START=1"
 " }}}
 
