@@ -1,6 +1,6 @@
-/**/tags
-/.netrwhist
-/bundle/*
-!/bundle/Vundle.vim
-!/bundle/bufexplorer-7.4.2
-!/bundle/php_doc
+**/tags
+.netrwhist
+bundle/*
+!bundle/Vundle.vim
+!bundle/bufexplorer-7.4.2
+!bundle/php_doc
