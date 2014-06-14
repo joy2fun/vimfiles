@@ -75,7 +75,8 @@ if has("win32")
     source $VIMRUNTIME/mswin.vim
     behave mswin
 elseif has("unix")
-
+    let g:launchWebBrowser=":!/usr/bin/google-chrome "
+    let g:kdbDir = "~/kdb"
 endif
 
 " mappings {{{
