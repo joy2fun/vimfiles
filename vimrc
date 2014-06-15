@@ -82,6 +82,10 @@ endif
 
 " mappings {{{
 map Q gq
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
