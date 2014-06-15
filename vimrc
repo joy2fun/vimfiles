@@ -75,7 +75,7 @@ if has("win32")
     source $VIMRUNTIME/mswin.vim
     behave mswin
 elseif has("unix")
-
+    let g:fileBrowser="nautilus"
 endif
 
 " mappings {{{
