@@ -77,6 +77,7 @@ if has("win32")
 elseif has("unix")
     let g:launchWebBrowser=":!/usr/bin/google-chrome "
     let g:kdbDir = "~/kdb"
+    let g:fileBrowser="nautilus"
 endif
 
 " mappings {{{
