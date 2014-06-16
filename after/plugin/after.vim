@@ -4,6 +4,5 @@ if exists("g:loaded_fugitive")
 endif
 
 "neocomplcache settings
-if exists("g:loaded_neocomplcache")
-    source $vim_root/neoco.vim
-endif
+"if exists("g:loaded_neocomplcache")
+"endif

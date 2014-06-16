@@ -92,7 +92,7 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
 nnoremap <silent> <Leader>n :NERDTree .<cr>
 nnoremap <silent> <Space>n :NERDTreeClose<cr>
-inoremap <expr><M-/> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+imap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
 "switch single line. breaks on first/last line
@@ -185,11 +185,10 @@ let g:dbgPavimBreakAtEntry = 0
 
 "kdb settings
 let g:globalDBkeys = {
-      \ 'oxford' : '<Leader>ll',
-      \ 'oxford7' : '<Leader>lk',
+      \ 'oxford7' : '<Leader>ll',
       \ }
 let g:localDBkeys = {
-      \ 'php' : ['K', '<C-K>'],
+      \ 'php' : ['K', '<C-8>'],
       \ }
 
 let g:snippets_dir = $vim_root . '/snippets/'
@@ -227,8 +226,8 @@ let g:ctrlp_extensions = ['funky']
 " Plugins {{{
 filetype off
 let g:vundle_lazy_load=1
-set rtp+=$vim_root/bundle/Vundle.vim/
-call vundle#rc($vim_root.'/bundle')
+set rtp+=$vim_root/bundle/Vundle.vim
+call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
@@ -242,12 +241,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'brookhong/DBGPavim'
 Plugin 'brookhong/k.vim'
-"Plugin 'Shougo/neocomplcache'
-"Plugin 'brookhong/neco-php'
-Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'Shougo/neocomplcache'
+Plugin 'brookhong/neco-php'
+source $vim_root/neoco.vim
+"Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'file:///'.$vim_root.'/bundle/php_doc'
-Plugin 'file:///'.$vim_root.'/bundle/bufexplorer-7.4.2'
+"Plugin 'file:///'.$vim_root.'/bundle/bufexplorer-7.4.2'
 
 call vundle#end()
 filetype plugin indent on
