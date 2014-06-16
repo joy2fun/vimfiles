@@ -82,17 +82,18 @@ endif
 
 " mappings {{{
 map Q gq
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
+nmap H <C-W>h
+nmap L <C-W>l
+nmap J <C-W>j
+nmap K <C-W>k
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
 nnoremap <silent> <Leader>n :NERDTree .<cr>
 nnoremap <silent> <Space>n :NERDTreeClose<cr>
-imap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
 "switch single line. breaks on first/last line
@@ -188,7 +189,7 @@ let g:globalDBkeys = {
       \ 'oxford7' : '<Leader>ll',
       \ }
 let g:localDBkeys = {
-      \ 'php' : ['K', '<C-8>'],
+      \ 'php' : ['F', '<C-8>'],
       \ }
 
 let g:snippets_dir = $vim_root . '/snippets/'
@@ -248,7 +249,6 @@ source $vim_root/neoco.vim
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'file:///'.$vim_root.'/bundle/php_doc'
-"Plugin 'file:///'.$vim_root.'/bundle/bufexplorer-7.4.2'
 
 call vundle#end()
 filetype plugin indent on

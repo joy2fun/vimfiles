@@ -26,10 +26,10 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-inoremap <expr><C-j> neocomplcache#start_manual_complete()
+"inoremap <expr><C-j> neocomplcache#start_manual_complete()
 
 " Plugin key-mappings.
-inoremap <expr><C-k>     neocomplcache#undo_completion()
+inoremap <expr><C-k> neocomplcache#undo_completion()
 "inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
@@ -41,11 +41,10 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " completion
-"inoremap <expr><SPACE>  pumvisible() ? "\<C-n>" . neocomplcache#close_popup() : "\<Space>"
+inoremap <expr><SPACE>  pumvisible() ? "\<C-n>" . neocomplcache#close_popup() : "\<Space>"
 " <C-h>, <BS>: close popup and delete backword char.
 "inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-`>  neocomplcache#close_popup()
 "inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
