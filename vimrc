@@ -246,6 +246,7 @@ Plugin 'brookhong/k.vim'
 "Plugin 'brookhong/neco-php'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'file:///'.$vim_root.'/bundle/php_doc'
 Plugin 'file:///'.$vim_root.'/bundle/bufexplorer-7.4.2'
 
