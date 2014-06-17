@@ -107,7 +107,7 @@ snippet array
 # php unit 
 #
 snippet pu
-	class ${1}Test extends PHPUnit_Framework_TestCase
+	class ${1:`substitute(Filename(), '\..*', '', '')`} extends PHPUnit_Framework_TestCase
 	{
 		public function test${2}()
 		{

@@ -53,7 +53,7 @@ set history=50  " keep 50 lines of command line history
 set ruler       " show the cursor position all the time
 set showcmd     " display incomplete commands
 set incsearch   " do incremental searching
-set autochdir
+"set autochdir
 
 set t_Co=256
 
@@ -63,22 +63,27 @@ endif
 
 let mapleader = ","
 let $vim_root = expand("<sfile>:p:h")
+source $VIMRUNTIME/mswin.vim
+behave mswin
+colors molokai
 
 " }}}
 
-colors molokai
-
 if has("win32")
+    let vundlepath=$vim_root."/bundle"
     let g:launchWebBrowser=":silent ! start "
-    let g:kdbDir = "C:/Dropbox/kdb"
+    let g:kdbDir="C:/Dropbox/kdb"
     let g:fileBrowser="explorer"
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
+    let g:www_root="D:/wamp/www"
 elseif has("unix")
+    let vundlepath=""
     let g:launchWebBrowser=":!/usr/bin/google-chrome "
-    let g:kdbDir = "~/kdb"
+    let g:kdbDir="~/kdb"
     let g:fileBrowser="nautilus"
+    let g:www_root="/opt/lampp/htdocs"
 endif
+
+cd`=g:www_root`
 
 " mappings {{{
 map Q gq
@@ -86,12 +91,16 @@ nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
 nmap K <C-W>k
-
+"toggle neocomplcache
+nmap <C-Y><C-Y> :let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>
+imap <C-Y><C-Y> <Esc>:let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>a
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
+nnoremap <silent> F :exe ":h ".expand("<cword>")<cr>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
-nnoremap <silent> <Leader>n :NERDTree .<cr>
+nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
+nnoremap <silent> <Leader>e :CC<cr>:NERDTree .<cr>
 nnoremap <silent> <Space>n :NERDTreeClose<cr>
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
@@ -133,6 +142,8 @@ nnoremap <Leader>fp :Git push origin master
 nnoremap <Leader>pu :Phpunit<Space>
 nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
+nnoremap <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
+nnoremap <silent> <leader>we :execute g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
@@ -199,7 +210,7 @@ let g:user_emmet_expandabbr_key = '<C-E>'
 let Tlist_Show_One_File = 1
 "nerdtree settings
 let NERDTreeMinimalUI=1
-let NERDTreeChDirMode=0
+let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
 
@@ -228,7 +239,7 @@ let g:ctrlp_extensions = ['funky']
 filetype off
 let g:vundle_lazy_load=1
 set rtp+=$vim_root/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin(vundlepath)
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'

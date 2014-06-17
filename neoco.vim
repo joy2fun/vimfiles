@@ -2,7 +2,7 @@
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_disable_auto_complete = 1
+let g:neocomplcache_disable_auto_complete = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
@@ -41,7 +41,8 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " completion
-inoremap <expr><SPACE>  pumvisible() ? "\<C-n>" . neocomplcache#close_popup() : "\<Space>"
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+inoremap <expr><SPACE>  pumvisible() ? neocomplcache#close_popup()."\<Space>" : "\<Space>"
 " <C-h>, <BS>: close popup and delete backword char.
 "inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
