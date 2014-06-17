@@ -70,13 +70,11 @@ colors molokai
 " }}}
 
 if has("win32")
-    let vundlepath=$vim_root."/bundle"
     let g:launchWebBrowser=":silent ! start "
     let g:kdbDir="C:/Dropbox/kdb"
     let g:fileBrowser="explorer"
     let g:www_root="D:/wamp/www"
 elseif has("unix")
-    let vundlepath=""
     let g:launchWebBrowser=":!/usr/bin/google-chrome "
     let g:kdbDir="~/kdb"
     let g:fileBrowser="nautilus"
@@ -239,7 +237,7 @@ let g:ctrlp_extensions = ['funky']
 filetype off
 let g:vundle_lazy_load=1
 set rtp+=$vim_root/bundle/Vundle.vim
-call vundle#begin(vundlepath)
+call vundle#begin($vim_root."/bundle")
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
