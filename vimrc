@@ -100,6 +100,7 @@ nnoremap <silent> <Leader>t :TlistToggle<cr>
 nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
 nnoremap <silent> <Leader>e :CC<cr>:NERDTree .<cr>
 nnoremap <silent> <Space>n :NERDTreeClose<cr>
+nnoremap <silent> <Space>w :exe ":NERDTree ".g:www_root<cr>
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
