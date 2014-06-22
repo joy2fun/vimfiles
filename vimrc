@@ -220,6 +220,9 @@ let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|
 "let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 "let g:SuperTabMappingTabLiteral = '<c-s-tab>'
 
+"let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=1
+
 " ctrlp setup {{{
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 0
@@ -256,10 +259,10 @@ Plugin 'Shougo/neocomplcache'
 Plugin 'brookhong/neco-php'
 source $vim_root/neoco.vim
 "Plugin 'shawncplus/phpcomplete.vim'
+Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'file:///'.$vim_root.'/bundle/php_doc'
-
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -272,7 +275,8 @@ fun! PHPFileSettings()
     nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
     nnoremap <Leader>u :Phpunit %<CR>
     nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
-    nnoremap <silent> <Tab> :call WrapMoveToCharInLine('$')<CR>
+    nnoremap <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
+    nnoremap <silent> <Esc> :call WrapMoveToCharInLine('$')<CR>
 endfun
 
 fun! WrapMoveToCharInLine(char)
