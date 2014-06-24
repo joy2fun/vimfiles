@@ -84,7 +84,6 @@ endif
 cd`=g:www_root`
 
 " mappings {{{
-map Q gq
 nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
@@ -95,12 +94,12 @@ imap <C-Y><C-Y> <Esc>:let g:neocomplcache_disable_auto_complete = !g:neocomplcac
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-nnoremap <silent> F :exe ":h ".expand("<cword>")<cr>
-nnoremap <silent> <Leader>t :TlistToggle<cr>
-nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
-nnoremap <silent> <Leader>e :CC<cr>:NERDTree .<cr>
-nnoremap <silent> <Space>n :set nolist!<cr>
-nnoremap <silent> <Space>w :exe ":NERDTree ".g:www_root<cr>
+nnoremap <silent> Q :exe ":h ".expand("<cword>")<cr>
+nnoremap <silent> <leader>t :TlistToggle<cr>
+nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+nnoremap <silent> <leader>e :CC<cr>:NERDTree .<cr>
+nnoremap <silent> <space>n :set nolist!<cr>
+nnoremap <silent> <space>w :exe ":NERDTree ".g:www_root<cr>
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
@@ -111,8 +110,7 @@ inoremap <M-Down> <Esc>ddp$a
 nnoremap <silent> <space>d "_d
 nnoremap <silent> <space>t :tabe<CR>
 nnoremap <silent> <space>q :q<CR>
-nnoremap <silent> <Leader>ve :exe tab e g:vimrcfile
-nnoremap <silent> <leader>ve :e $vim_root/vimrc<CR>
+nnoremap <silent> <leader>ve :tab e $vim_root/vimrc<CR>:set fdm=marker<CR>
 nnoremap <silent> <leader>vs :so $vim_root/vimrc<CR>
 nnoremap <silent> <leader>vr 0y$:<C-r>"<CR>
 nnoremap <silent> <leader>qa :qall!<cr>
@@ -122,23 +120,24 @@ let g:vregex_meta_chars = '^$|[].*\/~'
 vnoremap <silent> * "vy/<C-r>=substitute(escape(@v,g:vregex_meta_chars),"\n",'\\n','g')<CR><CR>N
 vnoremap <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>\>//g<Left><Left>
 vnoremap <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
-nnoremap <silent> <space><space> :nohl<CR>
+nnoremap <silent> <space>h :nohl<CR>
 vnoremap <silent> <leader>d "_d
 "ctrlp mappings
-nnoremap <silent> <Leader>bb :CtrlPBuffer<cr>
-nnoremap <silent> <Leader>bm :CtrlPMRUFiles<cr>
-nnoremap <silent> <Leader>bf :CtrlPFunky<cr>
-nnoremap <silent> <Leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <silent> <leader>bb :CtrlPBuffer<cr>
+nnoremap <silent> <leader>bm :CtrlPMRUFiles<cr>
+nnoremap <silent> <leader>bf :CtrlPFunky<cr>
+nnoremap <silent> <leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
 "fugitive mappings
-nnoremap <Leader>ff :Git<Space>
-nnoremap <Leader>fg :GitCMD<Space>
-nnoremap <Leader>fs :Gstatus<cr>
-nnoremap <Leader>fa :Git add %<cr>
-nnoremap <Leader>fc :Gcommit -a -m ""<Left>
-nnoremap <Leader>fd :Git diff %<cr>
-nnoremap <Leader>fl :GitCMD log -4<cr>
-nnoremap <Leader>fp :Git push origin master
-nnoremap <Leader>pu :Phpunit<Space>
+nnoremap <leader>ff :Git<space>
+nnoremap <leader>fg :GitCMD<space>
+nnoremap <leader>fs :Gstatus<cr>
+nnoremap <leader>fa :Git add %<cr>
+nnoremap <leader>fc :Gcommit -a -m ""<Left>
+nnoremap <leader>fd :Git diff %<cr>
+nnoremap <leader>fl :GitCMD log -4<cr>
+nnoremap <leader>fp :Git push origin master
+
+nnoremap <leader>pu :Phpunit<space>
 nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 nnoremap <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
@@ -196,7 +195,7 @@ let g:dbgPavimBreakAtEntry = 0
 
 "kdb settings
 let g:globalDBkeys = {
-      \ 'oxford7' : '<Leader>ll',
+      \ 'oxford7' : '<leader>ll',
       \ }
 let g:localDBkeys = {
       \ 'php' : ['F', '<C-8>'],
@@ -259,7 +258,7 @@ Plugin 'Shougo/neocomplcache'
 Plugin 'brookhong/neco-php'
 source $vim_root/neoco.vim
 "Plugin 'shawncplus/phpcomplete.vim'
-Plugin '2072/PHP-Indenting-for-VIm'
+"Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'plasticboy/vim-markdown'
 call vundle#end()
@@ -270,12 +269,12 @@ syntax on
 "Functions {{{
 fun! PHPFileSettings()
     "php mappings
-    nnoremap <Leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
-    nnoremap <Leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
-    nnoremap <Leader>u :Phpunit %<CR>
+    nnoremap <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
+    nnoremap <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+    nnoremap <leader>u :Phpunit %<CR>
     nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nnoremap <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
-    nnoremap <silent> <Esc> :call WrapMoveToCharInLine('$')<CR>
+    nnoremap <silent> <space><space> :call WrapMoveToCharInLine('$')<CR>
 endfun
 
 fun! WrapMoveToCharInLine(char)
