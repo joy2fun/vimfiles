@@ -99,7 +99,7 @@ nnoremap <silent> F :exe ":h ".expand("<cword>")<cr>
 nnoremap <silent> <Leader>t :TlistToggle<cr>
 nnoremap <silent> <Leader>n :NERDTreeToggle<cr>
 nnoremap <silent> <Leader>e :CC<cr>:NERDTree .<cr>
-nnoremap <silent> <Space>n :NERDTreeClose<cr>
+nnoremap <silent> <Space>n :set nolist!<cr>
 nnoremap <silent> <Space>w :exe ":NERDTree ".g:www_root<cr>
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <S-Enter> <C-O>$<cr>
@@ -261,8 +261,7 @@ source $vim_root/neoco.vim
 "Plugin 'shawncplus/phpcomplete.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'file:///'.$vim_root.'/bundle/php_doc'
+"Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 filetype plugin indent on
 syntax on
