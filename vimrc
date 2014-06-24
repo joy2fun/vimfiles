@@ -145,7 +145,7 @@ nnoremap <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/se
 nnoremap <silent> <leader>we :execute g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
-nnoremap <silent> <leader>wl :execute g:launchWebBrowser.expand("<cWORD>")<CR>
+nnoremap <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 " }}}
 
 " custom commands {{{
@@ -164,6 +164,7 @@ com! -nargs=0 -bar FmtJSON :%s/,"/,\r"/ge|%s/{"/{\r"/ge|%s/\(\S\)}/\1\r}/ge|set 
 com! -nargs=0 -bar RmTrailingBlanks :%s/\s\+$//g
 com! -nargs=* Phpunit :exe "!phpunit <args>"
 com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION_START=1"
+com! -nargs=* -complete=command -bar R call k#ReadExCmdIntoConsole("10sv", "", <q-args>)
 " }}}
 
 " auto commands {{{
@@ -190,6 +191,9 @@ endif
 " }}}
 
 " misc {{{
+" surrounds
+let g:surround_{char2nr("%")} = "{% \r %}"
+
 "xdebug settings
 let g:dbgPavimPort = 9009
 let g:dbgPavimBreakAtEntry = 0
@@ -249,6 +253,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 "Plugin 'ervandew/supertab'
 Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
