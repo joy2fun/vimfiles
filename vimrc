@@ -203,7 +203,7 @@ let g:globalDBkeys = {
       \ 'oxford7' : '<leader>ll',
       \ }
 let g:localDBkeys = {
-      \ 'php' : ['F', '<C-8>'],
+      \ 'php' : ['Q', '<C-8>'],
       \ }
 
 let g:snippets_dir = $vim_root . '/snippets/'
