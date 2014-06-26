@@ -110,7 +110,8 @@ inoremap <M-Down> <Esc>ddp$a
 nnoremap <silent> <space>d "_d
 nnoremap <silent> <space>t :tabe<CR>
 nnoremap <silent> <space>q :q<CR>
-nnoremap <silent> <leader>ve :tab e $vim_root/vimrc<CR>:set fdm=marker<CR>
+nnoremap <space>g :Rc !grep -irl --exclude-dir=.git<space>
+nnoremap <silent> <leader>ve :tabe $vim_root/vimrc<CR>:set fdm=marker<CR>
 nnoremap <silent> <leader>vs :so $vim_root/vimrc<CR>
 nnoremap <silent> <leader>vr 0y$:<C-r>"<CR>
 nnoremap <silent> <leader>qa :qall!<cr>
@@ -263,9 +264,9 @@ Plugin 'Shougo/neocomplcache'
 Plugin 'brookhong/neco-php'
 source $vim_root/neoco.vim
 "Plugin 'shawncplus/phpcomplete.vim'
-"Plugin '2072/PHP-Indenting-for-VIm'
+Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -274,12 +275,13 @@ syntax on
 "Functions {{{
 fun! PHPFileSettings()
     "php mappings
-    nnoremap <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
-    nnoremap <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
-    nnoremap <leader>u :Phpunit %<CR>
+    nnoremap <buffer> <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
+    nnoremap <buffer> <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+    nnoremap <buffer> <leader>u :Phpunit %<CR>
     nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nnoremap <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
-    nnoremap <silent> <space><space> :call WrapMoveToCharInLine('$')<CR>
+    nnoremap <buffer> <space><space> :call WrapMoveToCharInLine('$')<CR>
+    nnoremap <buffer> <space>g :Rc !grep -irl --include=*.php<space>
 endfun
 
 fun! WrapMoveToCharInLine(char)
