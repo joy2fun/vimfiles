@@ -1,3 +1,6 @@
 [submodule "bundle/Vundle.vim"]
     path = bundle/Vundle.vim
     url = https://github.com/gmarik/Vundle.vim.git
+[submodule "bundle/neco-php"]
+    path = bundle/neco-php
+    url = https://github.com/joy2fun/neco-php.git
