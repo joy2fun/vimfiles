@@ -165,6 +165,7 @@ com! -nargs=0 -bar RmTrailingBlanks :%s/\s\+$//g
 com! -nargs=* Phpunit :exe "!phpunit <args>"
 com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION_START=1"
 com! -nargs=* -complete=command -bar R call k#ReadExCmdIntoConsole("10sv", "", <q-args>)
+com! -nargs=1 Snip call LoadSnippets(<f-args>, &ft)
 " }}}
 
 " auto commands {{{
@@ -290,6 +291,14 @@ fun! WrapMoveToCharInLine(char)
     if l:current_col == col('.')
         exe "normal! 0f".a:char
     endif
+endfun
+
+fun! LoadSnippets(p, ft)
+    call ResetSnippets(a:ft)
+    let snips = split('_,'.a:p, ',')
+    for name in snips
+        call ExtractSnipsFile(g:snippets_dir . name . '.snippets', a:ft)
+    endfor
 endfun
 " }}}
 
