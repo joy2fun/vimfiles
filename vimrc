@@ -1,8 +1,7 @@
 " vim: foldmethod=marker
 " general settings {{{
 set nocompatible
-
-autocmd!
+au!
 
 let $LANG='en'
 set enc=utf-8
@@ -10,51 +9,42 @@ set guioptions-=m
 set guioptions-=L
 set guioptions-=T
 set guioptions-=r
-
-set cursorline
+set nocul
 set wildmenu
 set notimeout nottimeout
 set laststatus=2
 set list
 set listchars=tab:>-,trail:-
-set nu
+"set nu
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
 set expandtab
-
 set completeopt=menuone
-
 set so=5
 set ignorecase
 set lazyredraw
 set noerrorbells
 set novisualbell
-
 set hidden
 set nobackup
 set nowb
 set noswapfile
-
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
 set viminfo^=% " Remember info about open buffers on close
 set hlsearch
 set autoread " Set to auto read when a file is changed from the outside
 set nobackup
-
 set backspace=indent,eol,start
 set guifont=Courier_New:h10
-
 set history=50  " keep 50 lines of command line history
 set ruler       " show the cursor position all the time
 set showcmd     " display incomplete commands
 set incsearch   " do incremental searching
 "set autochdir
-
 set t_Co=256
 
 if has('mouse')
@@ -66,7 +56,6 @@ let $vim_root = expand("<sfile>:p:h")
 source $VIMRUNTIME/mswin.vim
 behave mswin
 colors molokai
-
 " }}}
 
 if has("win32")
@@ -88,9 +77,6 @@ nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
 nmap K <C-W>k
-"toggle neocomplcache
-nmap <C-Y><C-Y> :let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>
-imap <C-Y><C-Y> <Esc>:let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>a
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -100,8 +86,6 @@ nnoremap <silent> <leader>n :NERDTreeToggle<cr>
 nnoremap <silent> <leader>e :CC<cr>:NERDTree .<cr>
 nnoremap <silent> <space>n :set nolist!<cr>
 nnoremap <silent> <space>w :exe ":NERDTree ".g:www_root<cr>
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
-inoremap <S-Enter> <C-O>$<cr>
 inoremap <C-L> <C-O>$
 "switch single line. breaks on first/last line
 inoremap <M-Up> <Esc>ddkP$a
@@ -166,6 +150,7 @@ com! -nargs=* Phpunit :exe "!phpunit <args>"
 com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION_START=1"
 com! -nargs=* -complete=command -bar R call k#ReadExCmdIntoConsole("10sv", "", <q-args>)
 com! -nargs=1 Snip call LoadSnippets(<f-args>, &ft)
+com! -nargs=1 Phpdict :let g:neco_php_default_sources=<q-args>
 " }}}
 
 " auto commands {{{
@@ -177,21 +162,101 @@ au BufReadPost *
 
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml
-    \ set ft=html.php.smarty |
     \ setlocal ts=2 |
     \ setlocal sts=2 |
     \ setlocal sw=2 |
     \ setlocal nolist |
     \ set syntax=php
 
-autocmd FileType php call PHPFileSettings()
-
+au FileType php call PHPFileSettings()
+au InsertEnter * set cul
+au InsertLeave * set nocul
 if has("gui")
     au GUIEnter * simalt ~x "maximise window
 endif
 " }}}
 
 " misc {{{
+
+" neocomplcache settings {{{
+let g:neco_php_default_sources='phpunit'
+"toggle neocomplcache
+nmap <C-Y><C-Y> :let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>
+imap <C-Y><C-Y> <Esc>:let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>a
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_disable_auto_complete = 1
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" Enable heavy features.
+" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+        \ }
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : neocomplcache#start_manual_complete()
+inoremap <expr><C-k> neocomplcache#undo_completion()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+
+" completion
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+inoremap <expr><SPACE>  pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplcache_enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplcache_enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" }}}
+
 " surrounds
 let g:surround_{char2nr("%")} = "{% \r %}"
 
@@ -218,13 +283,6 @@ let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
 
-"supertab settings
-"let g:SuperTabCrMapping = 0
-"let g:SuperTabMappingForward = '<c-j>'
-"let g:SuperTabMappingBackward = '<c-k>'
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"let g:SuperTabMappingTabLiteral = '<c-s-tab>'
-
 "let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=1
 
@@ -247,7 +305,6 @@ filetype off
 let g:vundle_lazy_load=1
 set rtp+=$vim_root/bundle/Vundle.vim
 call vundle#begin($vim_root."/bundle")
-
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
@@ -255,16 +312,13 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-"Plugin 'ervandew/supertab'
 Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'brookhong/DBGPavim'
 Plugin 'brookhong/k.vim'
 Plugin 'Shougo/neocomplcache'
-Plugin 'brookhong/neco-php'
-source $vim_root/neoco.vim
-"Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'joy2fun/neco-php'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
@@ -286,10 +340,14 @@ fun! PHPFileSettings()
 endfun
 
 fun! WrapMoveToCharInLine(char)
-    let l:current_col = col('.')
+    let l:old_col = col('.')
+    let l:current_col = l:old_col
     exe "normal! f".a:char
     if l:current_col == col('.')
         exe "normal! 0f".a:char
+        if l:old_col != 1 && 1 == col('.')
+            exe "normal " . l:old_col . "l"
+        endif
     endif
 endfun
 
