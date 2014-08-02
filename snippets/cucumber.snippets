@@ -1,0 +1,34 @@
+snippet fe
+	Feature: ${1}
+		In order to ${2}
+		As a ${3}
+		I need to ${4}
+snippet sc
+	Scenario: ${1}
+		Given ${2}
+		When ${3}
+		Then ${4}
+snippet S
+	Scenario: ${1}
+snippet ""
+	"""
+	${1}
+	"""
+### Mink
+snippet mg
+	Given I am on "${1}"${2}
+snippet mv
+	When I go to "${1}"${2}
+snippet mf
+	${1:When}${2:And} I fill "${3}" with "${4}"${5}
+snippet mp
+	${1:When}${2:And} I press "${3}"${4}
+snippet mc
+	And I follow "${1}"${2}
+snippet mfp
+	When I fill "${1}" with "${2}"
+	And I press "${3}"
+snippet msee
+	Then I should${1: not} see "${2}"
+snippet mhave
+	Then the response should${1: not} contain "${2}"
