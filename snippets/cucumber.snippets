@@ -20,7 +20,12 @@ snippet mg
 snippet mv
 	When I go to "${1}"${2}
 snippet mf
-	${1:When}${2:And} I fill "${3}" with "${4}"${5}
+	${1:When}${2:And} I fill in "${3}" with "${4}"${5}
+snippet mff
+	${1:When}${2:And} fill in the following:
+	|${1}|${2}|
+snippet |
+	|${1}|${2}|
 snippet mp
 	${1:When}${2:And} I press "${3}"${4}
 snippet mc
