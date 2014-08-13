@@ -70,7 +70,7 @@ elseif has("unix")
     let g:www_root="/opt/lampp/htdocs"
 endif
 
-cd`=g:www_root`
+"cd`=g:www_root`
 
 " mappings {{{
 nmap H <C-W>h
@@ -122,6 +122,10 @@ nnoremap <leader>fd :Git diff %<cr>
 nnoremap <leader>fl :GitCMD log -4<cr>
 nnoremap <leader>fp :Git push origin master
 
+nnoremap <Leader>m :sim ~x<cr>
+nnoremap <Leader>/ :.s/\//\\/g<cr>:nohl<cr>
+nnoremap <Leader>\ :.s/\\/\//g<cr>:nohl<cr>
+
 nnoremap <leader>pu :Phpunit<space>
 nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
 nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
@@ -151,6 +155,7 @@ com! -nargs=? XD :exe g:launchWebBrowser."http://localhost/<args>?XDEBUG_SESSION
 com! -nargs=* -complete=command -bar R call k#ReadExCmdIntoConsole("10sv", "", <q-args>)
 com! -nargs=1 Snip call LoadSnippets(<f-args>, &ft)
 com! -nargs=1 Phpdict :let g:neco_php_default_sources=<q-args>
+com! -nargs=0 Col :%s/\s.*//g
 " }}}
 
 " auto commands {{{
@@ -172,7 +177,7 @@ au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
 if has("gui")
-    au GUIEnter * simalt ~x "maximise window
+    "au GUIEnter * simalt ~x "maximise window
 endif
 " }}}
 
