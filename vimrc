@@ -145,7 +145,7 @@ com! -nargs=* GitCMD :
 
 com! -nargs=1 S let @/='\<'.<f-args>.'\>' | normal n
 com! -nargs=? CC cd %:h
-com! -nargs=? PHPTag !ctags --language-force=php <args>
+com! -nargs=? PHPTag !ctags --fields=+aimS --languages=php <args>
 com! -nargs=0 -bar Dos2Unix :%s/\r//g|set ff=unix
 com! -nargs=0 -bar FmtXML :%s/>\s*</>\r</ge|set ft=xml|normal ggVG=
 com! -nargs=0 -bar FmtJSON :%s/,"/,\r"/ge|%s/{"/{\r"/ge|%s/\(\S\)}/\1\r}/ge|set ft=javascript|normal ggVG=
