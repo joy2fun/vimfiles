@@ -134,6 +134,26 @@ nnoremap <silent> <leader>we :execute g:launchWebBrowser."http://translate.googl
 nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
+
+vn <silent> <space>ya "ay
+vn <silent> <space>yb "by
+vn <silent> <space>yc "cy
+vn <silent> <space>yd "dy
+vn <silent> <space>ye "ey
+vn <silent> <space>yf "fy
+vn <silent> <space>yg "gy
+
+nno <silent> <space>pp "0p
+nno <silent> <space>PP "0P
+nno <silent> <space>pa "ap
+nno <silent> <space>pb "bp
+nno <silent> <space>pc "cp
+nno <silent> <space>pd "dp
+nno <silent> <space>pe "ep
+nno <silent> <space>pf "fp
+nno <silent> <space>pg "gp
+
+map s <Plug>(easymotion-prefix)
 " }}}
 
 " custom commands {{{
