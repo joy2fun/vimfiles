@@ -135,6 +135,8 @@ nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s
 nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
+nno <silent> <leader>wp :set nowrap!<CR>
+
 vn <silent> <space>ya "ay
 vn <silent> <space>yb "by
 vn <silent> <space>yc "cy
