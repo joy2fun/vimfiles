@@ -106,7 +106,6 @@ vnoremap <silent> * "vy/<C-r>=substitute(escape(@v,g:vregex_meta_chars),"\n",'\\
 vnoremap <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>\>//g<Left><Left>
 vnoremap <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
 nnoremap <silent> <space>h :nohl<CR>
-vnoremap <silent> <leader>d "_d
 "ctrlp mappings
 nnoremap <silent> <leader>bb :CtrlPBuffer<cr>
 nnoremap <silent> <leader>bm :CtrlPMRUFiles<cr>
@@ -136,6 +135,7 @@ nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com
 nnoremap <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
 nno <silent> <leader>wp :set nowrap!<CR>
+nno <silent> gl g;g,
 
 vn <silent> <space>ya "ay
 vn <silent> <space>yb "by
@@ -156,6 +156,9 @@ nno <silent> <space>pf "fp
 nno <silent> <space>pg "gp
 
 map s <Plug>(easymotion-prefix)
+
+nno <leader>df :vertical diffsplit<Space>
+
 " }}}
 
 " custom commands {{{
