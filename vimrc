@@ -1,4 +1,5 @@
 " vim: foldmethod=marker
+
 " general settings {{{
 set nocompatible
 au!
@@ -58,19 +59,35 @@ behave mswin
 colors molokai
 " }}}
 
+" os specific {{{
+fun! IsPath(path)
+    return !empty(glob(a:path))
+endfun
+
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
     let g:kdbDir="C:/Dropbox/kdb"
     let g:fileBrowser="explorer"
-    let g:www_root="D:/wamp/www"
+    let g:wwwroot="D:/wamp/www"
+    if !IsPath(g:wwwroot)
+        let g:wwwroot="D:/"
+        if !IsPath(g:wwwroot)
+            let g:wwwroot="C:/"
+        endif
+    endif
 elseif has("unix")
     let g:launchWebBrowser=":!/usr/bin/google-chrome "
     let g:kdbDir="~/kdb"
     let g:fileBrowser="nautilus"
-    let g:www_root="/opt/lampp/htdocs"
+    let g:wwwroot="/opt/lampp/htdocs"
+    if !IsPath(g:wwwroot)
+        let g:wwwroot="~"
+    endif
 endif
 
-"cd`=g:www_root`
+cd`=g:wwwroot`
+
+" }}}
 
 " mappings {{{
 nmap H <C-W>h
@@ -85,7 +102,7 @@ nn <silent> <leader>t :TlistToggle<cr>
 nn <silent> <leader>n :NERDTreeToggle<cr>
 nn <silent> <leader>e :CC<cr>:NERDTree .<cr>
 nn <silent> <space>n :set nolist!<cr>
-nn <silent> <space>w :exe ":NERDTree ".g:www_root<cr>
+nn <silent> <space>w :exe ":NERDTree ".g:wwwroot<cr>
 ino <C-L> <C-O>$
 "switch single line. breaks on first/last line
 ino <M-Up> <Esc>ddkP$a
@@ -126,13 +143,13 @@ nn <Leader>/ :.s/\//\\/g<cr>:nohl<cr>
 nn <Leader>\ :.s/\\/\//g<cr>:nohl<cr>
 
 nn <leader>pu :Phpunit<space>
-nn <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
-nn <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
-nn <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
-nn <silent> <leader>we :execute g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
-nn <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
-nn <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
-nn <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
+nn <space>f :exe "silent !" . g:fileBrowser . " %:h"<CR>
+nn <silent> <leader>pm :exe g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
+nn <silent> <leader>ww :exe g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
+nn <silent> <leader>we :exe g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
+nn <silent> <leader>wb :exe g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
+nn <silent> <leader>wg :exe g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
+nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
 nn <silent> <leader>wp :set nowrap!<CR>
 nn <silent> gl g;g,
@@ -390,4 +407,3 @@ fun! LoadSnippets(p, ft)
     endfor
 endfun
 " }}}
-
