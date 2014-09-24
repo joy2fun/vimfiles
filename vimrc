@@ -79,63 +79,63 @@ nmap J <C-W>j
 nmap K <C-W>k
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-nnoremap <silent> Q :exe ":h ".expand("<cword>")<cr>
-nnoremap <silent> <leader>t :TlistToggle<cr>
-nnoremap <silent> <leader>n :NERDTreeToggle<cr>
-nnoremap <silent> <leader>e :CC<cr>:NERDTree .<cr>
-nnoremap <silent> <space>n :set nolist!<cr>
-nnoremap <silent> <space>w :exe ":NERDTree ".g:www_root<cr>
-inoremap <C-L> <C-O>$
+ino <C-U> <C-G>u<C-U>
+nn <silent> Q :exe ":h ".expand("<cword>")<cr>
+nn <silent> <leader>t :TlistToggle<cr>
+nn <silent> <leader>n :NERDTreeToggle<cr>
+nn <silent> <leader>e :CC<cr>:NERDTree .<cr>
+nn <silent> <space>n :set nolist!<cr>
+nn <silent> <space>w :exe ":NERDTree ".g:www_root<cr>
+ino <C-L> <C-O>$
 "switch single line. breaks on first/last line
-inoremap <M-Up> <Esc>ddkP$a
-inoremap <M-Down> <Esc>ddp$a
+ino <M-Up> <Esc>ddkP$a
+ino <M-Down> <Esc>ddp$a
 
-nnoremap <silent> <space>d "_d
-nnoremap <silent> <space>t :tabe<CR>
-nnoremap <silent> <space>q :q<CR>
-nnoremap <space>g :Rc !grep -irl --exclude-dir=.git<space>
-nnoremap <silent> <leader>ve :tabe $vim_root/vimrc<CR>:set fdm=marker<CR>
-nnoremap <silent> <leader>vs :so $vim_root/vimrc<CR>
-nnoremap <silent> <leader>vr 0y$:<C-r>"<CR>
-nnoremap <silent> <leader>qa :qall!<cr>
-nnoremap <silent> <leader>qx :q!<cr>
+nn <silent> <space>d "_d
+nn <silent> <space>t :tabe<CR>
+nn <silent> <space>q :q<CR>
+nn <space>g :Rc !grep -irl --exclude-dir=.git<space>
+nn <silent> <leader>ve :tabe $vim_root/vimrc<CR>:set fdm=marker<CR>
+nn <silent> <leader>vs :so $vim_root/vimrc<CR>
+nn <silent> <leader>vr 0y$:<C-r>"<CR>
+nn <silent> <leader>qa :qall!<cr>
+nn <silent> <leader>qx :q!<cr>
 let g:eregex_meta_chars = '^$()[]{}.*+?\/'
 let g:vregex_meta_chars = '^$|[].*\/~'
-vnoremap <silent> * "vy/<C-r>=substitute(escape(@v,g:vregex_meta_chars),"\n",'\\n','g')<CR><CR>N
-vnoremap <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>\>//g<Left><Left>
-vnoremap <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
-nnoremap <silent> <space>h :nohl<CR>
+vn <silent> * "vy/<C-r>=substitute(escape(@v,g:vregex_meta_chars),"\n",'\\n','g')<CR><CR>N
+vn <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>\>//g<Left><Left>
+vn <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
+nn <silent> <space>h :nohl<CR>
 "ctrlp mappings
-nnoremap <silent> <leader>bb :CtrlPBuffer<cr>
-nnoremap <silent> <leader>bm :CtrlPMRUFiles<cr>
-nnoremap <silent> <leader>bf :CtrlPFunky<cr>
-nnoremap <silent> <leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
+nn <silent> <leader>bb :CtrlPBuffer<cr>
+nn <silent> <leader>bm :CtrlPMRUFiles<cr>
+nn <silent> <leader>bf :CtrlPFunky<cr>
+nn <silent> <leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
 "fugitive mappings
-nnoremap <leader>ff :Git<space>
-nnoremap <leader>fg :GitCMD<space>
-nnoremap <leader>fs :Gstatus<cr>
-nnoremap <leader>fa :Git add %<cr>
-nnoremap <leader>fc :Gcommit -a -m ""<Left>
-nnoremap <leader>fd :Git diff %<cr>
-nnoremap <leader>fl :GitCMD log -4<cr>
-nnoremap <leader>fp :Git push origin master
+nn <leader>ff :Git<space>
+nn <leader>fg :GitCMD<space>
+nn <leader>fs :Gstatus<cr>
+nn <leader>fa :Git add %<cr>
+nn <leader>fc :Gcommit -a -m ""<Left>
+nn <leader>fd :Git diff %<cr>
+nn <leader>fl :GitCMD log -4<cr>
+nn <leader>fp :Git push origin master
 
-nnoremap <Leader>m :sim ~x<cr>
-nnoremap <Leader>/ :.s/\//\\/g<cr>:nohl<cr>
-nnoremap <Leader>\ :.s/\\/\//g<cr>:nohl<cr>
+nn <Leader>m :sim ~x<cr>
+nn <Leader>/ :.s/\//\\/g<cr>:nohl<cr>
+nn <Leader>\ :.s/\\/\//g<cr>:nohl<cr>
 
-nnoremap <leader>pu :Phpunit<space>
-nnoremap <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
-nnoremap <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
-nnoremap <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
-nnoremap <silent> <leader>we :execute g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
-nnoremap <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
-nnoremap <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
-nnoremap <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
+nn <leader>pu :Phpunit<space>
+nn <space>f :execute "silent !" . g:fileBrowser . " %:h"<CR>
+nn <silent> <leader>pm :execute g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
+nn <silent> <leader>ww :execute g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
+nn <silent> <leader>we :execute g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
+nn <silent> <leader>wb :execute g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
+nn <silent> <leader>wg :execute g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
+nn <silent> <leader>wl :execute g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
-nno <silent> <leader>wp :set nowrap!<CR>
-nno <silent> gl g;g,
+nn <silent> <leader>wp :set nowrap!<CR>
+nn <silent> gl g;g,
 
 vn <silent> <space>ya "ay
 vn <silent> <space>yb "by
@@ -145,19 +145,20 @@ vn <silent> <space>ye "ey
 vn <silent> <space>yf "fy
 vn <silent> <space>yg "gy
 
-nno <silent> <space>pp "0p
-nno <silent> <space>PP "0P
-nno <silent> <space>pa "ap
-nno <silent> <space>pb "bp
-nno <silent> <space>pc "cp
-nno <silent> <space>pd "dp
-nno <silent> <space>pe "ep
-nno <silent> <space>pf "fp
-nno <silent> <space>pg "gp
+nn <silent> <space>pp "0p
+nn <silent> <space>PP "0P
+nn <silent> <space>pa "ap
+nn <silent> <space>pb "bp
+nn <silent> <space>pc "cp
+nn <silent> <space>pd "dp
+nn <silent> <space>pe "ep
+nn <silent> <space>pf "fp
+nn <silent> <space>pg "gp
 
-map s <Plug>(easymotion-prefix)
+vn s <Plug>(easymotion-prefix)
+nn s <Plug>(easymotion-prefix)
 
-nno <leader>df :vertical diffsplit<Space>
+nn <leader>df :vertical diffsplit<Space>
 
 " }}}
 
@@ -235,12 +236,12 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : neocomplcache#start_manual_complete()
-inoremap <expr><C-k> neocomplcache#undo_completion()
+ino <expr><C-j> pumvisible() ? "\<C-n>" : neocomplcache#start_manual_complete()
+ino <expr><C-k> neocomplcache#undo_completion()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return neocomplcache#smart_close_popup() . "\<CR>"
   " For no inserting <CR> key.
@@ -248,18 +249,18 @@ function! s:my_cr_function()
 endfunction
 
 " completion
-inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-inoremap <expr><SPACE>  pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+ino <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+ino <expr><SPACE>  pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 " <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"ino <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"ino <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"ino <expr><C-e>  neocomplcache#cancel_popup()
 
 " For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+"ino <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"ino <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"ino <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"ino <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 " Or set this.
 "let g:neocomplcache_enable_cursor_hold_i = 1
 " Or set this.
@@ -272,13 +273,13 @@ inoremap <expr><SPACE>  pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 "set completeopt+=longest
 "let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"ino <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -360,13 +361,13 @@ syntax on
 "Functions {{{
 fun! PHPFileSettings()
     "php mappings
-    nnoremap <buffer> <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
-    nnoremap <buffer> <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
-    nnoremap <buffer> <leader>u :Phpunit %<CR>
-    nnoremap <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
-    nnoremap <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
-    nnoremap <buffer> <space><space> :call WrapMoveToCharInLine('$')<CR>
-    nnoremap <buffer> <space>g :Rc !grep -irl --include=*.php<space>
+    nn <buffer> <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
+    nn <buffer> <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
+    nn <buffer> <leader>u :Phpunit %<CR>
+    nn <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
+    nn <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
+    nn <buffer> <space><space> :call WrapMoveToCharInLine('$')<CR>
+    nn <buffer> <space>g :Rc !grep -irl --include=*.php<space>
 endfun
 
 fun! WrapMoveToCharInLine(char)

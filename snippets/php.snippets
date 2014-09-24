@@ -93,6 +93,18 @@ snippet fun
 	{
 		${3:// code...}
 	}
+snippet psf
+	public static function ${1:name}(${2}){
+		${3:// code...}
+	}
+snippet pf
+	public function ${1:name}(${2}){
+		${3:// code...}
+	}
+snippet pff
+	private function ${1:name}(${2}){
+		${3:// code...}
+	}
 snippet pu
 	class ${1:`substitute(Filename(), '\..*', '', '')`} extends PHPUnit_Framework_TestCase
 	{
