@@ -10,7 +10,7 @@ set guioptions-=m
 set guioptions-=L
 set guioptions-=T
 set guioptions-=r
-set nocul
+set nocursorline
 set wildmenu
 set notimeout nottimeout
 set laststatus=2
@@ -23,14 +23,14 @@ set softtabstop=4
 set smarttab
 set expandtab
 set completeopt=menuone
-set so=5
+set scrolloff=5
 set ignorecase
 set lazyredraw
 set noerrorbells
 set novisualbell
 set hidden
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 set ai "Auto indent
 set si "Smart indent
@@ -145,7 +145,7 @@ nn <Leader>\ :.s/\\/\//g<cr>:nohl<cr>
 nn <leader>pu :Phpunit<space>
 nn <space>f :exe "silent !" . g:fileBrowser . " %:h"<CR>
 nn <silent> <leader>pm :exe g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
-nn <silent> <leader>ww :exe g:launchWebBrowser."http://www.bing.com/search?q=".expand("<cword>")<CR>
+nn <silent> <leader>ww :exe g:launchWebBrowser."http://cn.bing.com/search?q=".expand("<cword>")<CR>
 nn <silent> <leader>we :exe g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
 nn <silent> <leader>wb :exe g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
 nn <silent> <leader>wg :exe g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
@@ -172,8 +172,9 @@ nn <silent> <space>pe "ep
 nn <silent> <space>pf "fp
 nn <silent> <space>pg "gp
 
-vn s <Plug>(easymotion-prefix)
-nn s <Plug>(easymotion-prefix)
+vmap s <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-prefix)
+nmap <leader><leader> <Plug>(easymotion-prefix)
 
 nn <leader>df :vertical diffsplit<Space>
 
@@ -219,9 +220,6 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
 au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
-if has("gui")
-    "au GUIEnter * simalt ~x "maximise window
-endif
 " }}}
 
 " misc {{{
