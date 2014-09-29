@@ -27,7 +27,7 @@ set scrolloff=5
 set ignorecase
 set lazyredraw
 set noerrorbells
-set novisualbell
+set vb t_vt=
 set hidden
 set nobackup
 set nowritebackup
@@ -303,6 +303,22 @@ endif
 "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " }}}
 
+" airline
+let g:airline_power_fonts=1
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
+
 " surrounds
 let g:surround_{char2nr("%")} = "{% \r %}"
 
@@ -361,6 +377,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'bling/vim-airline'
 Plugin 'brookhong/DBGPavim'
 Plugin 'brookhong/k.vim'
 Plugin 'Shougo/neocomplcache'
