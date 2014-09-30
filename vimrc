@@ -27,7 +27,7 @@ set scrolloff=5
 set ignorecase
 set lazyredraw
 set noerrorbells
-set novisualbell
+set vb t_vb=
 set hidden
 set nobackup
 set nowritebackup
@@ -178,6 +178,14 @@ nmap <leader><leader> <Plug>(easymotion-prefix)
 
 nn <leader>df :vertical diffsplit<Space>
 
+vmap aq a"
+omap aq a"
+vmap as a'
+omap as a'
+vmap iq i"
+omap iq i"
+vmap is i'
+omap is i'
 " }}}
 
 " custom commands {{{
@@ -305,6 +313,8 @@ endif
 
 " surrounds
 let g:surround_{char2nr("%")} = "{% \r %}"
+let g:surround_{char2nr("S")} = "['\r']"
+let g:surround_{char2nr("h")} = "<!--\r-->"
 
 "xdebug settings
 let g:dbgPavimPort = 9009
