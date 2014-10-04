@@ -108,7 +108,6 @@ ino <C-L> <C-O>$
 ino <M-Up> <Esc>ddkP$a
 ino <M-Down> <Esc>ddp$a
 
-nn <silent> <space>d "_d
 nn <silent> <space>t :tabe<CR>
 nn <silent> <space>q :q<CR>
 nn <space>g :Rc !grep -irl --exclude-dir=.git<space>
@@ -154,23 +153,31 @@ nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(
 nn <silent> <leader>wp :set nowrap!<CR>
 nn <silent> gl g;g,
 
-vn <silent> <space>ya "ay
-vn <silent> <space>yb "by
-vn <silent> <space>yc "cy
-vn <silent> <space>yd "dy
-vn <silent> <space>ye "ey
-vn <silent> <space>yf "fy
-vn <silent> <space>yg "gy
+map <silent> <space>da "ad
+map <silent> <space>db "bd
+map <silent> <space>dc "cd
+map <silent> <space>dd "dd
+map <silent> <space>de "ed
+map <silent> <space>df "fd
+map <silent> <space>dg "gd
 
-nn <silent> <space>pp "0p
-nn <silent> <space>PP "0P
-nn <silent> <space>pa "ap
-nn <silent> <space>pb "bp
-nn <silent> <space>pc "cp
-nn <silent> <space>pd "dp
-nn <silent> <space>pe "ep
-nn <silent> <space>pf "fp
-nn <silent> <space>pg "gp
+map <silent> <space>ya "ay
+map <silent> <space>yb "by
+map <silent> <space>yc "cy
+map <silent> <space>yd "dy
+map <silent> <space>ye "ey
+map <silent> <space>yf "fy
+map <silent> <space>yg "gy
+
+map <silent> <space>pp "0p
+map <silent> <space>PP "0P
+map <silent> <space>pa "ap
+map <silent> <space>pb "bp
+map <silent> <space>pc "cp
+map <silent> <space>pd "dp
+map <silent> <space>pe "ep
+map <silent> <space>pf "fp
+map <silent> <space>pg "gp
 
 vmap s <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-prefix)
