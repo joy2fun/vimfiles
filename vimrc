@@ -90,6 +90,8 @@ cd`=g:wwwroot`
 " }}}
 
 " mappings {{{
+map j gj
+map k gk
 nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
@@ -402,6 +404,7 @@ Plugin 'joy2fun/neco-php'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
 call vundle#end()
 filetype plugin indent on
 syntax on
