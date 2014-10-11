@@ -56,7 +56,7 @@ let mapleader = ","
 let $vim_root = expand("<sfile>:p:h")
 source $VIMRUNTIME/mswin.vim
 behave mswin
-colors molokai
+colors darkspectrum
 " }}}
 
 " os specific {{{
@@ -320,6 +320,15 @@ endif
 "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " }}}
 
+" gist
+let g:gist_open_browser_after_post = 1
+if !has('win32')
+    let g:gist_browser_command = g:launchWebBrowser . ' %URL%'
+endif
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
+let g:gist_update_on_write = 2
+
 " airline
 let g:airline_power_fonts=1
 let g:airline_mode_map = {
@@ -405,6 +414,8 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'godlygeek/tabular'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 call vundle#end()
 filetype plugin indent on
 syntax on
