@@ -56,7 +56,7 @@ let mapleader = ","
 let $vim_root = expand("<sfile>:p:h")
 source $VIMRUNTIME/mswin.vim
 behave mswin
-colors darkspectrum
+colors molokai
 " }}}
 
 " os specific {{{
