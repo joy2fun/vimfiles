@@ -96,6 +96,7 @@ nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
 nmap K <C-W>k
+nn gh gT
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 ino <C-U> <C-G>u<C-U>
@@ -130,14 +131,10 @@ nn <silent> <leader>bm :CtrlPMRUFiles<cr>
 nn <silent> <leader>bf :CtrlPFunky<cr>
 nn <silent> <leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
 "fugitive mappings
-nn <leader>ff :Git<space>
-nn <leader>fg :GitCMD<space>
 nn <leader>fs :Gstatus<cr>
-nn <leader>fa :Git add %<cr>
 nn <leader>fc :Gcommit -a -m ""<Left>
 nn <leader>fd :Git diff %<cr>
 nn <leader>fl :GitCMD log -4<cr>
-nn <leader>fp :Git push origin master
 
 nn <Leader>m :sim ~x<cr>
 nn <Leader>/ :.s/\//\\/g<cr>:nohl<cr>
@@ -153,48 +150,33 @@ nn <silent> <leader>wg :exe g:launchWebBrowser."https://www.google.com.hk/search
 nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
 nn <silent> <leader>wp :set nowrap!<CR>
-nn <silent> gl g;g,
 
-map <silent> <space>da "ad
-map <silent> <space>db "bd
-map <silent> <space>dc "cd
-map <silent> <space>dd "dd
-map <silent> <space>de "ed
-map <silent> <space>df "fd
-map <silent> <space>dg "gd
-
-map <silent> <space>ya "ay
-map <silent> <space>yb "by
-map <silent> <space>yc "cy
-map <silent> <space>yd "dy
-map <silent> <space>ye "ey
-map <silent> <space>yf "fy
-map <silent> <space>yg "gy
-
-map <silent> <space>pp "0p
-map <silent> <space>PP "0P
-map <silent> <space>pa "ap
-map <silent> <space>pb "bp
-map <silent> <space>pc "cp
-map <silent> <space>pd "dp
-map <silent> <space>pe "ep
-map <silent> <space>pf "fp
-map <silent> <space>pg "gp
-
-vmap s <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-prefix)
-nmap <leader><leader> <Plug>(easymotion-prefix)
+map ss <Plug>(easymotion-s)
+map sw <Plug>(easymotion-w)
+map sb <Plug>(easymotion-b)
+map sj <Plug>(easymotion-bd-jk)
+map sk <Plug>(easymotion-bd-jk)
+map mv <Plug>(easymotion-s)$
+map mg <Plug>(easymotion-s)>
+map ml <Plug>(easymotion-s)<
+map me <Plug>(easymotion-s)=
+map mq <Plug>(easymotion-s)"
+map mb <Plug>(easymotion-s)(
+map mc <Plug>(easymotion-s){
 
 nn <leader>df :vertical diffsplit<Space>
+nn ' `
 
-vmap aq a"
 omap aq a"
-vmap as a'
-omap as a'
-vmap iq i"
+vmap aq a"
 omap iq i"
-vmap is i'
-omap is i'
+vmap iq i"
+
+nn <Leader>fa vib:Tabularize /=><CR>
+vn <Leader>fa :Tabularize /=><CR>
+nn <Leader>fe vib:Tabularize /=<CR>
+vn <Leader>fe :Tabularize /=<CR>
+
 " }}}
 
 " custom commands {{{
@@ -234,6 +216,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ setlocal nolist |
     \ set syntax=php
 
+au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
 au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
@@ -261,7 +244,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
-        \ }
+    \ }
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
@@ -426,23 +409,9 @@ fun! PHPFileSettings()
     "php mappings
     nn <buffer> <leader>dd :set paste<CR>:call PhpDocSingle()<CR>:set nopaste<CR>
     nn <buffer> <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
-    nn <buffer> <leader>u :Phpunit %<CR>
     nn <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nn <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
-    nn <buffer> <space><space> :call WrapMoveToCharInLine('$')<CR>
     nn <buffer> <space>g :Rc !grep -irl --include=*.php<space>
-endfun
-
-fun! WrapMoveToCharInLine(char)
-    let l:old_col = col('.')
-    let l:current_col = l:old_col
-    exe "normal! f".a:char
-    if l:current_col == col('.')
-        exe "normal! 0f".a:char
-        if l:old_col != 1 && 1 == col('.')
-            exe "normal " . l:old_col . "l"
-        endif
-    endif
 endfun
 
 fun! LoadSnippets(p, ft)
