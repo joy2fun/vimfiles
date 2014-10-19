@@ -179,20 +179,9 @@ vn <Leader>fa :Tabularize /=><CR>
 nn <Leader>fe vib:Tabularize /=<CR>
 vn <Leader>fe :Tabularize /=<CR>
 
-nn gn <Esc>b:call search('\w\+', 'w')<CR>viw
-vn gn <Esc>:call search('\w\+', 'w')<CR>viw
-nn gl <Esc>b:call search('\w\+', 'b')<CR>viw
-vn gl <Esc>b:call search('\w\+', 'b')<CR>viw
-nmap <Space> gn
-vmap <Space> gn
-nmap <Right> gn
-vmap <Right> gn
-nmap <Left> gl
-vmap <Left> gl
-nmap <Up> kgl
-vmap <Up> kgl
-nmap <Down> jgn
-vmap <Down> jgn
+vmap <Tab> <Esc>b:call search('\w\+', 'w')<CR>viw
+nmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
+vmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
 " }}}
 
 " custom commands {{{
