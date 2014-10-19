@@ -90,8 +90,8 @@ cd`=g:wwwroot`
 " }}}
 
 " mappings {{{
-map j gj
-map k gk
+noremap j gj
+noremap k gk
 nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
@@ -165,6 +165,9 @@ map me <Plug>(easymotion-s)=
 map mq <Plug>(easymotion-s)"
 map mb <Plug>(easymotion-s)(
 map mc <Plug>(easymotion-s){
+
+map <silent> gk :exe "normal "+(line('w0')+&scrolloff)+"G"<CR>
+map <silent> gj :exe "normal "+(line('w$')-&scrolloff)+"G"<CR>
 
 nn <leader>df :vertical diffsplit<Space>
 nn ' `
