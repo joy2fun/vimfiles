@@ -96,7 +96,7 @@ nmap H <C-W>h
 nmap L <C-W>l
 nmap J <C-W>j
 nmap K <C-W>k
-nn gh gT
+map gh gT
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 ino <C-U> <C-G>u<C-U>
@@ -151,6 +151,8 @@ nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(
 
 nn <silent> <leader>wp :set nowrap!<CR>
 
+map sv <Esc>:update<CR>
+
 map ss <Plug>(easymotion-s)
 map sw <Plug>(easymotion-w)
 map sb <Plug>(easymotion-b)
@@ -177,6 +179,20 @@ vn <Leader>fa :Tabularize /=><CR>
 nn <Leader>fe vib:Tabularize /=<CR>
 vn <Leader>fe :Tabularize /=<CR>
 
+nn gn <Esc>b:call search('\w\+', 'w')<CR>viw
+vn gn <Esc>:call search('\w\+', 'w')<CR>viw
+nn gl <Esc>b:call search('\w\+', 'b')<CR>viw
+vn gl <Esc>b:call search('\w\+', 'b')<CR>viw
+nmap <Space> gn
+vmap <Space> gn
+nmap <Right> gn
+vmap <Right> gn
+nmap <Left> gl
+vmap <Left> gl
+nmap <Up> kgl
+vmap <Up> kgl
+nmap <Down> jgn
+vmap <Down> jgn
 " }}}
 
 " custom commands {{{
