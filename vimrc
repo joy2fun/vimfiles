@@ -182,7 +182,7 @@ vn <Leader>fa :Tabularize /=><CR>
 nn <Leader>fe vib:Tabularize /=<CR>
 vn <Leader>fe :Tabularize /=<CR>
 
-vmap <Tab> <Esc>b:call search('\w\+', 'w')<CR>viw
+vmap <Tab> <Esc>call search('\w\+', 'w')<CR>viw
 nmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
 vmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
 " }}}
@@ -225,6 +225,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ set syntax=php
 
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
+au FileType html nmap <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
@@ -429,4 +430,15 @@ fun! LoadSnippets(p, ft)
         call ExtractSnipsFile(g:snippets_dir . name . '.snippets', a:ft)
     endfor
 endfun
+
+fun! s:setcwd()
+    let cph = expand('%:p:h', 1)
+    if cph =~ '^.\+://' | retu | en
+    for mkr in ['project.txt', '.git/', '.hg/', '.svn/', '.bzr/', '_darcs/', '.vimprojects']
+      let wd = call('find'.(mkr =~ '/$' ? 'dir' : 'file'), [mkr, cph.';'])
+      if wd != '' | let &acd = 0 | brea | en
+    endfo
+    exe 'lc!' fnameescape(wd == '' ? cph : substitute(wd, mkr.'$', '.', ''))
+endfun
+autocmd BufEnter * call s:setcwd()
 " }}}
