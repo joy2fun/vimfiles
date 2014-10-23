@@ -182,7 +182,7 @@ vn <Leader>fa :Tabularize /=><CR>
 nn <Leader>fe vib:Tabularize /=<CR>
 vn <Leader>fe :Tabularize /=<CR>
 
-vmap <Tab> <Esc>call search('\w\+', 'w')<CR>viw
+vmap <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 nmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
 vmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
 " }}}
