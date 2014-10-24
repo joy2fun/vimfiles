@@ -48,6 +48,10 @@ set incsearch   " do incremental searching
 "set autochdir
 set t_Co=256
 
+if has("gui")
+    set guitablabel=%{TabTitle()}
+endif
+
 if has('mouse')
   set mouse=a
 endif
@@ -441,4 +445,18 @@ fun! s:setcwd()
     exe 'lc!' fnameescape(wd == '' ? cph : substitute(wd, mkr.'$', '.', ''))
 endfun
 autocmd BufEnter * call s:setcwd()
+
+fun! TabTitle()
+    let label = ''
+    let bufnrlist = tabpagebuflist(v:lnum)
+    for bufnr in bufnrlist
+        if getbufvar(bufnr, "&modified")
+            let label = '+ '
+            break
+        endif
+    endfor
+    return label . substitute(expand('%:p'), '\(.:\?\)[^\\/]*\([\\/]\)', '\1\2', 'g')
+    return label . expand('%:t') " tail part only
+endfun
+
 " }}}
