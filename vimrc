@@ -105,12 +105,10 @@ map gh gT
 " so that you can undo CTRL-U after inserting a line break.
 ino <C-U> <C-G>u<C-U>
 nn <silent> Q :exe ":h ".expand("<cword>")<cr>
-nn <silent> <leader>t :TlistToggle<cr>
 nn <silent> <leader>n :NERDTreeToggle<cr>
 nn <silent> <leader>e :CC<cr>:NERDTree .<cr>
 nn <silent> <space>n :set nolist!<cr>
 nn <silent> <space>w :exe ":NERDTree ".g:wwwroot<cr>
-ino <C-L> <C-O>$
 "switch single line. breaks on first/last line
 ino <M-Up> <Esc>ddkP$a
 ino <M-Down> <Esc>ddp$a
@@ -130,7 +128,6 @@ vn <leader>sw "vy:<C-u>%s/\<<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n"
 vn <leader>sg "vy:<C-u>%s/<C-r>=substitute(escape(@v,g:eregex_meta_chars),"\n",'\\n','g')<CR>//g<Left><Left>
 nn <silent> <space>h :nohl<CR>
 "ctrlp mappings
-nn <silent> <leader>bb :CtrlPBuffer<cr>
 nn <silent> <leader>bm :CtrlPMRUFiles<cr>
 nn <silent> <leader>bf :CtrlPFunky<cr>
 nn <silent> <leader>bF :exe 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -170,10 +167,6 @@ map mq <Plug>(easymotion-s)"
 map mb <Plug>(easymotion-s)(
 map mc <Plug>(easymotion-s){
 
-imap <C-G><C-G> <Esc>
-nmap <C-F><C-F> <Plug>(easymotion-bd-w)
-imap <C-F><C-F> <Esc><Plug>(easymotion-bd-w)
-
 map <silent> gk :exe "normal "+(line('w0')+&scrolloff)+"G"<CR>
 map <silent> gj :exe "normal "+(line('w$')-&scrolloff)+"G"<CR>
 
@@ -204,6 +197,11 @@ imap <silent> <C-F><C-M> <Esc><C-F><C-M>a
 imap <silent> <C-F><C-J> <Esc><C-F><C-J>a
 imap <silent> <C-F><C-K> <Esc><C-F><C-K>a
 
+nmap <silent> <C-F><C-F> <Plug>(easymotion-bd-w)
+imap <silent> <C-F><C-F> <Esc><Plug>(easymotion-bd-w)
+
+imap <silent> <C-G><C-H> <C-O>^
+imap <silent> <C-G><C-L> <C-O>$
 " }}}
 
 " custom commands {{{
