@@ -16,7 +16,7 @@ set notimeout nottimeout
 set laststatus=2
 set list
 set listchars=tab:>-,trail:-
-"set nu
+set nu
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -155,7 +155,7 @@ nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(
 
 nn <silent> <leader>wp :set nowrap!<CR>
 
-map sv <Esc>:update<CR>
+map <silent> sv <Esc>:update<CR>
 
 map ss <Plug>(easymotion-s)
 map sw <Plug>(easymotion-w)
@@ -169,6 +169,10 @@ map me <Plug>(easymotion-s)=
 map mq <Plug>(easymotion-s)"
 map mb <Plug>(easymotion-s)(
 map mc <Plug>(easymotion-s){
+
+imap <C-G><C-G> <Esc>
+nmap <C-F><C-F> <Plug>(easymotion-bd-w)
+imap <C-F><C-F> <Esc><Plug>(easymotion-bd-w)
 
 map <silent> gk :exe "normal "+(line('w0')+&scrolloff)+"G"<CR>
 map <silent> gj :exe "normal "+(line('w$')-&scrolloff)+"G"<CR>
@@ -186,9 +190,20 @@ vn <Leader>fa :Tabularize /=><CR>
 nn <Leader>fe vib:Tabularize /=<CR>
 vn <Leader>fe :Tabularize /=<CR>
 
-vmap <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
-nmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
-vmap <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
+vmap <silent> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
+nmap <silent> <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
+vmap <silent> <S-Tab> <Esc>b:call search('\w\+', 'b')<CR>viw
+
+nmap <silent> <C-F><C-N> :call search('\([''"]\)\s*\1', 'w')<CR>
+nmap <silent> <C-F><C-M> :call search('\([''"]\)\s*\1', 'wb')<CR>
+nmap <silent> <C-F><C-J> :call search('>\s*</', 'w')<CR>
+nmap <silent> <C-F><C-K> :call search('>\s*</', 'wb')<CR>
+
+imap <silent> <C-F><C-N> <Esc><C-F><C-N>a
+imap <silent> <C-F><C-M> <Esc><C-F><C-M>a
+imap <silent> <C-F><C-J> <Esc><C-F><C-J>a
+imap <silent> <C-F><C-K> <Esc><C-F><C-K>a
+
 " }}}
 
 " custom commands {{{
@@ -229,7 +244,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ set syntax=php
 
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
-au FileType html nmap <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
+au FileType html nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
@@ -424,7 +439,7 @@ fun! PHPFileSettings()
     nn <buffer> <leader>da :set paste<CR>:%call PhpDocRange()<CR>:set nopaste<CR>
     nn <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nn <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
-    nn <buffer> <space>g :Rc !grep -irl --include=*.php<space>
+    nn <buffer> <space>g :Rc !grep -irl --include=*.php  *<Left><Left>
 endfun
 
 fun! LoadSnippets(p, ft)
