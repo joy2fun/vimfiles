@@ -455,7 +455,10 @@ fun! s:setcwd()
       let wd = call('find'.(mkr =~ '/$' ? 'dir' : 'file'), [mkr, cph.';'])
       if wd != '' | let &acd = 0 | brea | en
     endfo
-    exe 'lc!' fnameescape(wd == '' ? cph : substitute(wd, mkr.'$', '.', ''))
+    let cph = fnameescape(wd == '' ? cph : substitute(wd, mkr.'$', '.', ''))
+    if !empty(glob(cph))
+        exe 'lc!' . cph
+    endif
 endfun
 autocmd BufEnter * call s:setcwd()
 
