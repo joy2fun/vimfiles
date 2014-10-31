@@ -152,6 +152,8 @@ nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(
 
 nn <silent> <leader>wp :set nowrap!<CR>
 
+nn <silent> <leader>o :exe ':tabe '.expand("<cWORD>")<CR>
+
 map <silent> sv <Esc>:update<CR>
 
 map ss <Plug>(easymotion-s)
