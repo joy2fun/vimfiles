@@ -277,7 +277,7 @@ func! PhpDocFunc()
     let l:txtBOL = g:pdv_cfg_BOL . l:indent
 	
     exe l:txtBOL . g:pdv_cfg_CommentHead . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Comment1 . g:pdv_cfg_Todo . funcname . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Comment1 . g:pdv_cfg_EOL
     exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
 
 	while (l:parameters != ",") && (l:parameters != "")
@@ -401,7 +401,7 @@ func! PhpDocClass()
     let l:txtBOL = g:pdv_cfg_BOL . l:indent
 	
     exe l:txtBOL . g:pdv_cfg_CommentHead . g:pdv_cfg_EOL
-	exe l:txtBOL . g:pdv_cfg_Comment1 . g:pdv_cfg_Todo . l:classname . " " . g:pdv_cfg_EOL
+	exe l:txtBOL . g:pdv_cfg_Comment1 . g:pdv_cfg_EOL
     exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
     if l:extends != "" && l:extends != "implements"
     	exe l:txtBOL . g:pdv_cfg_Commentn . "@uses " . l:extends . g:pdv_cfg_EOL

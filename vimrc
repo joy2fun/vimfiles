@@ -145,14 +145,12 @@ nn <leader>pu :Phpunit<space>
 nn <space>f :exe "silent !" . g:fileBrowser . " %:h"<CR>
 nn <silent> <leader>pm :exe g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 nn <silent> <leader>ww :exe g:launchWebBrowser."http://cn.bing.com/search?q=".expand("<cword>")<CR>
-nn <silent> <leader>we :exe g:launchWebBrowser."http://translate.google.cn/\\#en/zh-CN/".expand("<cword>")<CR>
 nn <silent> <leader>wb :exe g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
-nn <silent> <leader>wg :exe g:launchWebBrowser."https://www.google.com.hk/search?q=".expand("<cword>")<CR>
 nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
 nn <silent> <leader>wp :set nowrap!<CR>
 
-nn <silent> <leader>o :exe ':tabe '.expand("<cWORD>")<CR>
+nn <silent> <C-T> :exe ':tabe '.expand("<cWORD>")<CR>
 
 map <silent> sv <Esc>:update<CR>
 
