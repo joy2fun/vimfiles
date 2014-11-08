@@ -224,6 +224,7 @@ com! -nargs=* -complete=command -bar R call k#ReadExCmdIntoConsole("10sv", "", <
 com! -nargs=1 Snip call LoadSnippets(<f-args>, &ft)
 com! -nargs=1 Phpdict :let g:neco_php_default_sources=<q-args>
 com! -nargs=0 Col :%s/\s.*//g
+com! -nargs=0 -bar Df :difft|normal L|:difft<CR>
 " }}}
 
 " auto commands {{{
