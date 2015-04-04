@@ -202,6 +202,8 @@ imap <silent> <C-F><C-F> <Esc><Plug>(easymotion-bd-w)
 
 imap <silent> <C-G><C-H> <C-O>^
 imap <silent> <C-G><C-L> <C-O>$
+
+cmap w!! %!sudo tee > /dev/null %
 " }}}
 
 " custom commands {{{
