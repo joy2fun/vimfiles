@@ -108,13 +108,14 @@ nn <silent> Q :exe ":h ".expand("<cword>")<cr>
 nn <silent> <leader>n :NERDTreeToggle<cr>
 nn <silent> <leader>e :CC<cr>:NERDTree .<cr>
 nn <silent> <space>n :set nolist!<cr>
-nn <silent> <space>w :exe ":NERDTree ".g:wwwroot<cr>
+"nn <silent> <space>w :exe ":NERDTree ".g:wwwroot<cr>
+nn <silent> <space>w :q<cr>
 "switch single line. breaks on first/last line
 ino <M-Up> <Esc>ddkP$a
 ino <M-Down> <Esc>ddp$a
 
 nn <silent> <space>t :tabe<CR>
-nn <silent> <space>q :q<CR>
+"nn <silent> <space>q :q<CR>
 nn <space>g :Rc !grep -irl --exclude-dir=.git<space>
 nn <silent> <leader>ve :tabe $vim_root/vimrc<CR>:set fdm=marker<CR>
 nn <silent> <leader>vs :so $vim_root/vimrc<CR>
