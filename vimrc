@@ -108,7 +108,7 @@ nn <silent> Q :exe ":h ".expand("<cword>")<cr>
 nn <silent> <leader>n :NERDTreeToggle<cr>
 nn <silent> <leader>e :CC<cr>:NERDTree .<cr>
 nn <silent> <space>n :set nolist!<cr>
-"nn <silent> <space>w :exe ":NERDTree ".g:wwwroot<cr>
+nn <silent> <space>v :windo wincmd H<cr>
 nn <silent> <space>w :q<cr>
 "switch single line. breaks on first/last line
 ino <M-Up> <Esc>ddkP$a
