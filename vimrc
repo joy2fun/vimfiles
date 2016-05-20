@@ -80,10 +80,16 @@ if has("win32")
         endif
     endif
 elseif has("unix")
-    let g:launchWebBrowser=":!/usr/bin/google-chrome "
-    let g:kdbDir="~/kdb"
-    let g:fileBrowser="nautilus"
-    let g:wwwroot="/opt/lampp/htdocs"
+    if (system("uname -s") =~ "Darwin")
+        let g:launchWebBrowser=":silent ! open /Applications/Safari.app "
+        let g:fileBrowser="open"
+        let g:wwwroot="~/git"
+    else
+        let g:launchWebBrowser=":!/usr/bin/google-chrome "
+        let g:kdbDir="~/kdb"
+        let g:fileBrowser="nautilus"
+        let g:wwwroot="/opt/lampp/htdocs"
+    endif
     if !IsPath(g:wwwroot)
         let g:wwwroot="~"
     endif
@@ -147,7 +153,7 @@ nn <space>f :exe "silent !" . g:fileBrowser . " %:h"<CR>
 nn <silent> <leader>pm :exe g:launchWebBrowser."http://www.php.net/".expand("<cword>")<CR>
 nn <silent> <leader>ww :exe g:launchWebBrowser."http://cn.bing.com/search?q=".expand("<cword>")<CR>
 nn <silent> <leader>wb :exe g:launchWebBrowser."http://www.baidu.com/s?wd=".expand("<cword>")<CR>
-nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
+"nn <silent> <leader>wl :exe g:launchWebBrowser.substitute(expand("<cWORD>"), '^(\\|)$', '', 'g')<CR>
 
 nn <silent> <leader>wp :set nowrap!<CR>
 
@@ -427,9 +433,9 @@ Plugin 'joy2fun/nginx.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'godlygeek/tabular'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
+"Plugin 'godlygeek/tabular'
+"Plugin 'mattn/webapi-vim'
+"Plugin 'mattn/gist-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()
 filetype plugin indent on
