@@ -60,7 +60,7 @@ let mapleader = ","
 let $vim_root = expand("<sfile>:p:h")
 source $VIMRUNTIME/mswin.vim
 behave mswin
-colors molokai
+"colors molokai
 " }}}
 
 " os specific {{{
@@ -365,9 +365,10 @@ let g:airline_mode_map = {
   \ }
 
 " surrounds
-let g:surround_{char2nr("%")} = "{% \r %}"
-let g:surround_{char2nr("S")} = "['\r']"
-let g:surround_{char2nr("h")} = "<!--\r-->"
+let g:surround_{char2nr("S")} = "['\r\r']"
+let g:surround_{char2nr("t")} = "<\1tag: \1>\r</\1\1>"
+let g:surround_{char2nr("i")} = "if () {\n    \r\n}"
+let g:surround_{char2nr("e")} = "try {\n    \r\n} catch (\Exception $e) {\n}"
 
 "xdebug settings
 let g:dbgPavimPort = 9009
