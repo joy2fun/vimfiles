@@ -277,7 +277,7 @@ nmap <C-Y><C-Y> :let g:neocomplcache_disable_auto_complete = !g:neocomplcache_di
 imap <C-Y><C-Y> <Esc>:let g:neocomplcache_disable_auto_complete = !g:neocomplcache_disable_auto_complete<cr>a
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_disable_auto_complete = 1
+let g:neocomplcache_disable_auto_complete = 0
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
@@ -438,7 +438,7 @@ Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'bling/vim-airline'
 Plugin 'brookhong/cscope.vim'
 Plugin 'brookhong/k.vim'
-Plugin 'Shougo/neocomplcache'
+Plugin 'joy2fun/neocomplcache'
 Plugin 'joy2fun/neco-php'
 Plugin 'joy2fun/nginx.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
