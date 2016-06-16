@@ -122,7 +122,6 @@ ino <M-Down> <Esc>ddp$a
 
 nn <silent> <space>t :tabe<CR>
 "nn <silent> <space>q :q<CR>
-nn <space>g :Rc !grep -irl --exclude-dir=.git<space>
 nn <silent> <leader>ve :tabe $vim_root/vimrc<CR>:set fdm=marker<CR>
 nn <silent> <leader>vs :so $vim_root/vimrc<CR>
 nn <silent> <leader>vr 0y$:<C-r>"<CR>
@@ -211,6 +210,17 @@ imap <silent> <C-G><C-H> <C-O>^
 imap <silent> <C-G><C-L> <C-O>$
 
 cmap w!! %!sudo tee > /dev/null %
+
+nn <space>g :call CscopeFindInteractive(expand('<cword>'))<CR>
+nn <space>l :call ToggleLocationList()<CR>
+nn <leader>gs :call CscopeFind('s', expand('<cword>'))<CR>
+nn <leader>gg :call CscopeFind('g', expand('<cword>'))<CR>
+nn <leader>gd :call CscopeFind('d', expand('<cword>'))<CR>
+nn <leader>gc :call CscopeFind('c', expand('<cword>'))<CR>
+nn <leader>gt :call CscopeFind('t', expand('<cword>'))<CR>
+nn <leader>ge :call CscopeFind('e', expand('<cword>'))<CR>
+nn <leader>gf :call CscopeFind('f', expand('<cword>'))<CR>
+nn <leader>gi :call CscopeFind('i', expand('<cword>'))<CR>
 " }}}
 
 " custom commands {{{
@@ -252,7 +262,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ set syntax=php
 
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
-au FileType html nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
+au FileType html,php nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
 au InsertEnter * set cul
 au InsertLeave * set nocul
@@ -426,7 +436,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'bling/vim-airline'
-Plugin 'brookhong/DBGPavim'
+Plugin 'brookhong/cscope.vim'
 Plugin 'brookhong/k.vim'
 Plugin 'Shougo/neocomplcache'
 Plugin 'joy2fun/neco-php'
