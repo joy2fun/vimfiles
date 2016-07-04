@@ -282,6 +282,10 @@ else
         \ set cursorline
 endif
 
+if (g:ismac)
+    au VimLeave * !im-select com.apple.keylayout.ABC
+endif
+
 " }}}
 
 " misc {{{
@@ -465,7 +469,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'mattn/gist-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 if  (g:ismac)
-    "Plugin 'ybian/smartim'
+    Plugin 'ybian/smartim'
 endif
 call vundle#end()
 filetype plugin indent on
