@@ -10,7 +10,7 @@ set guioptions-=m
 set guioptions-=L
 set guioptions-=T
 set guioptions-=r
-set nocursorline
+set cursorline
 set wildmenu
 set notimeout nottimeout
 set laststatus=2
@@ -68,6 +68,8 @@ fun! IsPath(path)
     return !empty(glob(a:path))
 endfun
 
+let g:ismac=(system("uname -s") =~ "Darwin")
+
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
     let g:kdbDir="C:/Dropbox/kdb"
@@ -80,10 +82,11 @@ if has("win32")
         endif
     endif
 elseif has("unix")
-    if (system("uname -s") =~ "Darwin")
+    if (g:ismac)
         let g:launchWebBrowser=":silent ! open /Applications/Safari.app "
         let g:fileBrowser="open"
         let g:wwwroot="~/git"
+        let g:smartim_default = 'com.apple.keylayout.ABC'
     else
         let g:launchWebBrowser=":!/usr/bin/google-chrome "
         let g:kdbDir="~/kdb"
@@ -264,8 +267,21 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
 au FileType html,php nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
-au InsertEnter * set cul
-au InsertLeave * set nocul
+
+if (exists("+imdisable"))
+    au InsertEnter * set
+        \ nocursorline |
+        \ noimdisable
+    au InsertLeave * set
+        \ cursorline |
+        \ imdisable
+else
+    au InsertEnter * set
+        \ nocursorline
+    au InsertLeave * set
+        \ cursorline
+endif
+
 " }}}
 
 " misc {{{
@@ -448,6 +464,9 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'mattn/webapi-vim'
 "Plugin 'mattn/gist-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+if  (g:ismac)
+    "Plugin 'ybian/smartim'
+endif
 call vundle#end()
 filetype plugin indent on
 syntax on
