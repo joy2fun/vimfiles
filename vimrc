@@ -269,17 +269,17 @@ au FileType html,php nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')
 au FileType php call PHPFileSettings()
 
 if (exists("+imdisable"))
-    au InsertEnter * set
-        \ nocursorline |
-        \ noimdisable
-    au InsertLeave * set
-        \ cursorline |
-        \ imdisable
+    au InsertEnter *
+        \ set nocursorline |
+        \ set noimdisable
+    au InsertLeave *
+        \ set cursorline |
+        \ set imdisable
 else
-    au InsertEnter * set
-        \ nocursorline
-    au InsertLeave * set
-        \ cursorline
+    au InsertEnter *
+        \ set nocursorline
+    au InsertLeave *
+        \ set cursorline
 endif
 
 " }}}
