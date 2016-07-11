@@ -468,9 +468,13 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'mattn/webapi-vim'
 "Plugin 'mattn/gist-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-if  (g:ismac)
-    Plugin 'ybian/smartim'
+
+if (!exists("+imdisable"))
+    if (g:ismac)
+        Plugin 'ybian/smartim'
+    endif
 endif
+
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -521,4 +525,8 @@ fun! TabTitle()
     return label . expand('%:t') " tail part only
 endfun
 
+" }}}
+
+"Colors {{{
+hi Search cterm=NONE ctermfg=DarkGrey ctermbg=LightYellow
 " }}}
