@@ -69,6 +69,7 @@ fun! IsPath(path)
 endfun
 
 let g:ismac=(system("uname -s") =~ "Darwin")
+let g:ismingw=(system("uname -s") =~ "MINGW")
 
 if has("win32")
     let g:launchWebBrowser=":silent ! start "
@@ -87,6 +88,10 @@ elseif has("unix")
         let g:fileBrowser="open"
         let g:wwwroot="~/git"
         let g:smartim_default = 'com.apple.keylayout.ABC'
+    elseif (g:ismingw)
+        let g:launchWebBrowser=":silent ! start "
+        let g:fileBrowser="explorer"
+        let g:wwwroot="~"
     else
         let g:launchWebBrowser=":!/usr/bin/google-chrome "
         let g:kdbDir="~/kdb"
