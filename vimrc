@@ -58,8 +58,8 @@ endif
 
 let mapleader = ","
 let $vim_root = expand("<sfile>:p:h")
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
 "colors molokai
 " }}}
 
