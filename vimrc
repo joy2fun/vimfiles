@@ -264,6 +264,7 @@ au BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
+au BufEnter *.conf setlocal ft=nginx
 au BufEnter *.md setlocal ft=markdown | Snip mkd
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml
