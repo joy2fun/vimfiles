@@ -229,6 +229,9 @@ nn <leader>gt :call CscopeFind('t', expand('<cword>'))<CR>
 nn <leader>ge :call CscopeFind('e', expand('<cword>'))<CR>
 nn <leader>gf :call CscopeFind('f', expand('<cword>'))<CR>
 nn <leader>gi :call CscopeFind('i', expand('<cword>'))<CR>
+nn <leader>gj :lcs f g <C-R>"<CR>
+nn <leader>gh :lcs f s <C-R>"<CR>
+nn <leader>gk :lcs f c <C-R>"<CR>
 
 nn <space>cr :exe "!gcc -std=c99 -Wall -Wextra % -o ".expand("%:p").".out && ".expand("%:p").".out"<CR>
 nn <space>cg :exe "!gcc % -g -o ".expand("%:p").".out && lldb ".expand("%:p").".out"<CR>
