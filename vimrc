@@ -509,7 +509,6 @@ fun! PHPFileSettings()
 endfun
 
 fun! CFileSettings()
-    nn <silent> <space>1 :exe "call k#RunMe('man 1 ".expand('<cword>')."', 'botri 30', '')"<cr>
     nn <silent> <space>2 :exe "call k#RunMe('man 2 ".expand('<cword>')."', 'botri 30', '')"<cr>
     nn <silent> <space>3 :exe "call k#RunMe('man 3 ".expand('<cword>')."', 'botri 30', '')"<cr>
 endfun
