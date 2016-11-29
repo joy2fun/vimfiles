@@ -278,8 +278,9 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ set syntax=php
 
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
-au FileType html,php nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
+au FileType html,php,c,cpp nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
+au FileType c,cpp call CFileSettings()
 
 if (exists("+imdisable"))
     au InsertEnter *
@@ -505,6 +506,12 @@ fun! PHPFileSettings()
     nn <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nn <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
     nn <buffer> <space>g :Rc !grep -irl --include=*.php  *<Left><Left>
+endfun
+
+fun! CFileSettings()
+    nn <silent> <space>1 :exe "call k#RunMe('man 1 ".expand('<cword>')."', 'botri 30', '')"<cr>
+    nn <silent> <space>2 :exe "call k#RunMe('man 2 ".expand('<cword>')."', 'botri 30', '')"<cr>
+    nn <silent> <space>3 :exe "call k#RunMe('man 3 ".expand('<cword>')."', 'botri 30', '')"<cr>
 endfun
 
 fun! LoadSnippets(p, ft)
