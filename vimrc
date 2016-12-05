@@ -219,6 +219,9 @@ imap <silent> <C-G><C-L> <C-O>$
 
 cmap w!! %!sudo tee > /dev/null %
 
+nn <space>1 :exe "call k#RunMe('man 1 ".expand('<cword>')."', '', '')"<cr>
+nn <space>2 :exe "call k#RunMe('man 2 ".expand('<cword>')."', '', '')"<cr>
+nn <space>3 :exe "call k#RunMe('man 3 ".expand('<cword>')."', '', '')"<cr>
 nn <space>g :call CscopeFindInteractive(expand('<cword>'))<CR>
 nn <space>l :call ToggleLocationList()<CR>
 nn <leader>gs :call CscopeFind('s', expand('<cword>'))<CR>
@@ -229,9 +232,9 @@ nn <leader>gt :call CscopeFind('t', expand('<cword>'))<CR>
 nn <leader>ge :call CscopeFind('e', expand('<cword>'))<CR>
 nn <leader>gf :call CscopeFind('f', expand('<cword>'))<CR>
 nn <leader>gi :call CscopeFind('i', expand('<cword>'))<CR>
-nn <leader>gj :lcs f g <C-R>"<CR>
-nn <leader>gh :lcs f s <C-R>"<CR>
-nn <leader>gk :lcs f c <C-R>"<CR>
+nn <leader>gj :call CscopeFind('g', '<C-R>"')<CR>
+nn <leader>gh :call CscopeFind('s', '<C-R>"')<CR>
+nn <leader>gk :call CscopeFind('c', '<C-R>"')<CR>
 
 nn <space>cr :exe "!gcc -std=c99 -Wall -Wextra % -o ".expand("%:p").".out && ".expand("%:p").".out"<CR>
 nn <space>cg :exe "!gcc % -g -o ".expand("%:p").".out && lldb ".expand("%:p").".out"<CR>
@@ -270,7 +273,7 @@ au BufReadPost *
 au BufEnter *.conf setlocal ft=nginx
 au BufEnter *.md setlocal ft=markdown | Snip mkd
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
-au BufEnter *.htm,*.html,*.tpl,*.phtml
+au BufEnter *.htm,*.html,*.tpl,*.phtml,*.phpt
     \ setlocal ts=2 |
     \ setlocal sts=2 |
     \ setlocal sw=2 |
@@ -278,9 +281,7 @@ au BufEnter *.htm,*.html,*.tpl,*.phtml
     \ set syntax=php
 
 au FileType nerdtree nmap <buffer> l <Plug>(easymotion-bd-jk)
-au FileType html,php,c,cpp nmap <silent> <buffer> <Tab> <Esc>:call search('\w\+', 'w')<CR>viw
 au FileType php call PHPFileSettings()
-au FileType c,cpp call CFileSettings()
 
 if (exists("+imdisable"))
     au InsertEnter *
@@ -506,11 +507,6 @@ fun! PHPFileSettings()
     nn <buffer> <space>l :call k#RunMe('php -l', 'botri 10', '')<CR>
     nn <buffer> <space>r :call k#RunMe('php ', 'botri 10', '')<CR>
     nn <buffer> <space>g :Rc !grep -irl --include=*.php  *<Left><Left>
-endfun
-
-fun! CFileSettings()
-    nn <silent> <space>2 :exe "call k#RunMe('man 2 ".expand('<cword>')."', 'botri 30', '')"<cr>
-    nn <silent> <space>3 :exe "call k#RunMe('man 3 ".expand('<cword>')."', 'botri 30', '')"<cr>
 endfun
 
 fun! LoadSnippets(p, ft)
