@@ -475,7 +475,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'bling/vim-airline'
-Plugin 'brookhong/cscope.vim'
+"Plugin 'brookhong/cscope.vim'
 Plugin 'joy2fun/k.vim'
 Plugin 'joy2fun/neocomplcache.vim'
 Plugin 'joy2fun/neco-php'
@@ -494,6 +494,9 @@ if (!exists("+imdisable"))
         Plugin 'ybian/smartim'
     endif
 endif
+
+" disable taglist
+let loaded_taglist = 'no'
 
 call vundle#end()
 filetype plugin indent on
