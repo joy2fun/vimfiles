@@ -87,7 +87,6 @@ elseif has("unix")
         let g:launchWebBrowser=":silent ! open /Applications/Safari.app "
         let g:fileBrowser="open"
         let g:wwwroot="~/git"
-        let g:smartim_default = 'com.apple.keylayout.ABC'
     elseif (g:ismingw)
         let g:launchWebBrowser=":silent ! start "
         let g:fileBrowser="explorer"
@@ -273,6 +272,12 @@ au BufReadPost *
 au BufEnter *.conf setlocal ft=nginx
 au BufEnter *.md setlocal ft=markdown | Snip mkd
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.css,*.snippets setlocal noexpandtab
+au BufEnter *.vue,*.js 
+    \ setlocal ts=2 |
+    \ setlocal sts=2 |
+    \ setlocal sw=2 |
+    \ setlocal nolist |
+    \ setlocal expandtab
 au BufEnter *.htm,*.html,*.tpl,*.phtml,*.phpt
     \ setlocal ts=2 |
     \ setlocal sts=2 |
@@ -287,18 +292,18 @@ if (exists("+imdisable"))
     au InsertEnter *
         \ set nocursorline |
         \ set noimdisable
-    au InsertLeave *
+    au CursorMoved *
         \ set cursorline |
         \ set imdisable
 else
     au InsertEnter *
         \ set nocursorline
-    au InsertLeave *
+    au CursorMoved *
         \ set cursorline
 endif
 
 if (g:ismac)
-    au VimLeave * !im-select com.apple.keylayout.ABC
+    "au InsertLeave * !im-select com.apple.keylayout.ABC
 endif
 
 " }}}
@@ -436,7 +441,7 @@ let Tlist_Show_One_File = 1
 let NERDTreeMinimalUI=1
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\)$']
+let NERDTreeIgnore=['\~$','^\.\+$','^\.\(git\|svn\|settings\|project\|metadata\|buildpath\|DS_Store\)$']
 
 "let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=1
@@ -448,7 +453,7 @@ let g:ctrlp_max_height = 25
 let g:ctrlp_mruf_exclude = 'dbgpavim_cli.*'
 let g:ctrlp_custom_ignore = {
       \ 'dir': '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.3dm$\|\.3g2$\|\.3gp$\|\.7z$\|\.a$\|\.a.out$\|\.accdb$\|\.ai$\|\.aif$\|\.aiff$\|\.app$\|\.arj$\|\.asf$\|\.asx$\|\.au$\|\.avi$\|\.bak$\|\.bin$\|\.bmp$\|\.bz2$\|\.cab$\|\.cer$\|\.cfm$\|\.cgi$\|\.com$\|\.cpl$\|\.csr$\|\.csv$\|\.cue$\|\.cur$\|\.dat$\|\.db$\|\.dbf$\|\.dbx$\|\.dds$\|\.deb$\|\.dem$\|\.dll$\|\.dmg$\|\.dmp$\|\.dng$\|\.doc$\|\.docx$\|\.drv$\|\.dwg$\|\.dxf$\|\.ear$\|\.efx$\|\.eps$\|\.epub$\|\.exe$\|\.fla$\|\.flv$\|\.fnt$\|\.fon$\|\.gadget$\|\.gam$\|\.gbr$\|\.ged$\|\.gif$\|\.gpx$\|\.gz$\|\.hqx$\|\.ibooks$\|\.icns$\|\.ico$\|\.ics$\|\.iff$\|\.img$\|\.indd$\|\.iso$\|\.jar$\|\.jpeg$\|\.jpg$\|\.key$\|\.keychain$\|\.kml$\|\.lnk$\|\.lz$\|\.m3u$\|\.m4a$\|\.max$\|\.mdb$\|\.mid$\|\.mim$\|\.moov$\|\.mov$\|\.movie$\|\.mp2$\|\.mp3$\|\.mp4$\|\.mpa$\|\.mpeg$\|\.mpg$\|\.msg$\|\.msi$\|\.nes$\|\.o$\|\.obj$\|\.ocx$\|\.odt$\|\.otf$\|\.pages$\|\.part$\|\.pct$\|\.pdb$\|\.pdf$\|\.pif$\|\.pkg$\|\.plugin$\|\.png$\|\.pps$\|\.ppt$\|\.pptx$\|\.prf$\|\.ps$\|\.psd$\|\.pspimage$\|\.qt$\|\.ra$\|\.rar$\|\.rm$\|\.rom$\|\.rpm$\|\.rtf$\|\.sav$\|\.scr$\|\.sdf$\|\.sea$\|\.sit$\|\.sitx$\|\.sln$\|\.smi$\|\.so$\|\.svg$\|\.swf$\|\.swp$\|\.sys$\|\.tar$\|\.tar.gz$\|\.tax2010$\|\.tga$\|\.thm$\|\.tif$\|\.tiff$\|\.tlb$\|\.tmp$\|\.toast$\|\.torrent$\|\.ttc$\|\.ttf$\|\.uu$\|\.uue$\|\.vb$\|\.vcd$\|\.vcf$\|\.vcxproj$\|\.vob$\|\.war$\|\.wav$\|\.wma$\|\.wmv$\|\.wpd$\|\.wps$\|\.xll$\|\.xlr$\|\.xls$\|\.xlsx$\|\.xpi$\|\.yuv$\|\.Z$\|\.zip$\|\.zipx$\|\.lib$\|\.res$\|\.rc$\|\.out$',
+      \ 'file': '\.DS\|\.3dm$\|\.3g2$\|\.3gp$\|\.7z$\|\.a$\|\.a.out$\|\.accdb$\|\.ai$\|\.aif$\|\.aiff$\|\.app$\|\.arj$\|\.asf$\|\.asx$\|\.au$\|\.avi$\|\.bak$\|\.bin$\|\.bmp$\|\.bz2$\|\.cab$\|\.cer$\|\.cfm$\|\.cgi$\|\.com$\|\.cpl$\|\.csr$\|\.csv$\|\.cue$\|\.cur$\|\.dat$\|\.db$\|\.dbf$\|\.dbx$\|\.dds$\|\.deb$\|\.dem$\|\.dll$\|\.dmg$\|\.dmp$\|\.dng$\|\.doc$\|\.docx$\|\.drv$\|\.dwg$\|\.dxf$\|\.ear$\|\.efx$\|\.eps$\|\.epub$\|\.exe$\|\.fla$\|\.flv$\|\.fnt$\|\.fon$\|\.gadget$\|\.gam$\|\.gbr$\|\.ged$\|\.gif$\|\.gpx$\|\.gz$\|\.hqx$\|\.ibooks$\|\.icns$\|\.ico$\|\.ics$\|\.iff$\|\.img$\|\.indd$\|\.iso$\|\.jar$\|\.jpeg$\|\.jpg$\|\.key$\|\.keychain$\|\.kml$\|\.lnk$\|\.lz$\|\.m3u$\|\.m4a$\|\.max$\|\.mdb$\|\.mid$\|\.mim$\|\.moov$\|\.mov$\|\.movie$\|\.mp2$\|\.mp3$\|\.mp4$\|\.mpa$\|\.mpeg$\|\.mpg$\|\.msg$\|\.msi$\|\.nes$\|\.o$\|\.obj$\|\.ocx$\|\.odt$\|\.otf$\|\.pages$\|\.part$\|\.pct$\|\.pdb$\|\.pdf$\|\.pif$\|\.pkg$\|\.plugin$\|\.png$\|\.pps$\|\.ppt$\|\.pptx$\|\.prf$\|\.ps$\|\.psd$\|\.pspimage$\|\.qt$\|\.ra$\|\.rar$\|\.rm$\|\.rom$\|\.rpm$\|\.rtf$\|\.sav$\|\.scr$\|\.sdf$\|\.sea$\|\.sit$\|\.sitx$\|\.sln$\|\.smi$\|\.so$\|\.svg$\|\.swf$\|\.swp$\|\.sys$\|\.tar$\|\.tar.gz$\|\.tax2010$\|\.tga$\|\.thm$\|\.tif$\|\.tiff$\|\.tlb$\|\.tmp$\|\.toast$\|\.torrent$\|\.ttc$\|\.ttf$\|\.uu$\|\.uue$\|\.vb$\|\.vcd$\|\.vcf$\|\.vcxproj$\|\.vob$\|\.war$\|\.wav$\|\.wma$\|\.wmv$\|\.wpd$\|\.wps$\|\.xll$\|\.xlr$\|\.xls$\|\.xlsx$\|\.xpi$\|\.yuv$\|\.Z$\|\.zip$\|\.zipx$\|\.lib$\|\.res$\|\.rc$\|\.out$',
       \ }
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_prompt_mappings = {
@@ -483,17 +488,7 @@ Plugin 'joy2fun/nginx.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'posva/vim-vue'
-"Plugin 'plasticboy/vim-markdown'
-"Plugin 'godlygeek/tabular'
-"Plugin 'mattn/webapi-vim'
-"Plugin 'mattn/gist-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-
-if (!exists("+imdisable"))
-    if (g:ismac)
-        Plugin 'ybian/smartim'
-    endif
-endif
 
 " disable taglist
 let loaded_taglist = 'no'
